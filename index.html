@@ -13,24 +13,39 @@
     <body>
         <div id="flexbox">
         <div class="header" id="flexbox">
-            <img src="./assets/geal-logo.png" class="logo">
+            <img src="./assets/geal-logo-new.png" class="logo">
         </div>
-        <div class="dropdown">  
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown">
-              Choose a State
-            </button>
-            <div class="dropdown-menu" id="state-selector"></div>
-        </div>
-        <div class="dropdown">  
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown">
-              Choose a Location
-            </button>
-            <div class="dropdown-menu" id="location-selector"></div>
-        </div>
+        <div id="horizontalFlexBox">
+            <div id="buttonsFlexBox">
+                <div class="dropdown">  
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="state-menu" data-toggle="dropdown">
+                    Choose a State
+                    </button>
+                    <div class="dropdown-menu" id="state-selector"></div>
+                </div>
+                <div class="dropdown">  
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="location-menu" data-toggle="dropdown">
+                    Choose a Location
+                    </button>
+                    <div class="dropdown-menu" id="location-selector"></div>
+                </div>
+            </div>
+            <div id="cloudBackground">
+                <img src="./assets/cloud.png" id="cloud-image">
+                <div id="location-info">
+                    <div id="flexbox">
+                        <h4 id="locationName">LOCATION NAME</h4>
+                        <h6>Address:</h6>
+                        <p id="locationAddress">LOCATOIN ADDRESS</p>
+                        <h6>Phone Number:</h6>
+                        <p id="locationPhone">LOCATION PHONE NUMBER</p>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="footer">
-            <h3>© Copyright Allie Soldau & Nicholas Nip 2022</h3>
-            <h3>All Rights Reserved</h3>
+            <p>© Copyright Allie Soldau & Nicholas Nip 2022</p>
+            <p>All Rights Reserved</p>
         </div>
     </body>
 </html>

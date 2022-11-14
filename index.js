@@ -44,6 +44,8 @@ function renderStates() {
         generateOptions.addEventListener('click', (e) =>{
             e.preventDefault()
             stateSorter = e.target.innerText
+            let stateButtonText = document.getElementById('state-menu')
+            stateButtonText.innerText = stateSorter
             filterLocationsByState(stateSorter)        
         })
         stateSelector.appendChild(generateOptions)
@@ -65,5 +67,13 @@ function filterLocationsByState(stateSorter) {
             // grab the state abbrevs. and make them the IDs of each location so we can filter with them
             locationSelector.appendChild(generateOptions)
         }
+    })
+}
+
+function generateAppointmentJSON(locationId){
+    fetch(`https://ttp.cbp.dhs.gov/schedulerapi/slots?orderBy=soonest&limit=1&locationId=${locationId}&minimum=1`)
+    .then(response => response.json())
+    .then(appointmentData => {
+        console.log(appointmentData)
     })
 }
