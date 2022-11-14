@@ -1,0 +1,38 @@
+.selector {
+    display: flex;
+    margin: auto;
+    margin-bottom: 8px;
+}
+
+html {
+    background-color: antiquewhite;
+    background-image: url(./assets/geal-background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+.selector {
+    text-align: center;
+}
+
+header {
+    display: flex;
+    padding-left: 16px;
+    padding-top: 16px;
+    flex-direction: row;
+}
+
+.footer {
+    display: flex;
+    flex-direction: column-reverse;
+    flex-grow: 1;
+    justify-content: flex-start;
+}
