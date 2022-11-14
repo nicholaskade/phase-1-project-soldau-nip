@@ -1,0 +1,1 @@
+To start up, open index.html.
