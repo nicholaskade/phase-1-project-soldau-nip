@@ -1,6 +1,7 @@
 body {
     background-color: antiquewhite;
     background-image: url(./assets/geal-background.jpg);
+    background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     -moz-background-size: cover;
@@ -15,27 +16,38 @@ body {
     flex: 1 1 0px;
 }
 
-#cloud-image {
-    z-index: 1;
-    display: inline-block;
-}
-
-#cloudBackground{
-    /* box-shadow: inset 0 0 0 1000px rgba(255, 255, 255, 0.4); */
-    background-size: cover;
-    width: 100%;
-    display: flex;
-    flex: 1 1 0px;
-    flex-wrap: wrap;
-}
-
 #location-info {
-    margin: 60px;
-    margin-left: 150px;
-    justify-content: center;
-    vertical-align: middle;
-    z-index: 2;
-    display: inline-block;
+    position: relative;
+    z-index: 1;
+    flex: 1 1 0px;
+    padding-left: 80px;
+}
+
+#cloudFlexBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 80px;
+    background-image: url("./assets/cloud.png");
+    opacity: 0.5;
+    background-size: contain;
+    background-repeat: no-repeat;
+    flex: 1.5 1 0px;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+#cloudText {
+    margin: 50px;
+    opacity: 1;
+    display: flex;
+    flex-direction: column;
+
+    /* font-size: .8rem; */
 }
 
 #horizontalFlexBox {
@@ -48,13 +60,6 @@ body {
     padding: 0;
     min-height: 100vh;
 }
-
-/* header {
-    display: flex;
-    padding-left: 16px;
-    padding-top: 16px;
-    flex-direction: row;
-} */
 
 .footer {
     margin: 10px;
