@@ -187,6 +187,7 @@ let appointmentDay
 let appointmentMonth
 let appointmentYear
 let appointmentDate
+let appointmentDateForMachine
 let appointmentDuration
 let appointmentStartTime
 let appointmentTimeData
@@ -217,24 +218,48 @@ function generateSoonestAppt(locationId) {
     })
 }
 
+// function generateApptInRange(locationId){
+//     let monthWord
+//     appointmentTimeData = appointmentData[0].startTimestamp
+//     appointmentDuration = appointmentData[0].duration
+//     appointmentStartTime = appointmentTimeData.slice(11)
+//     appointmentMonth = appointmentTimeData.substring(5,7)
+//     getMonthName(appointmentMonth)
+//     appointmentDay = appointmentTimeData.substring(8,10)
+//     appointmentYear = appointmentTimeData.substring(0,4)
+//     appointmentDate = `${appointmentDay} ${monthWord} ${appointmentYear}`
+//     fetch(`https://ttp.cbp.dhs.gov/schedulerapi/slots?orderBy=soonest&limit=1&locationId=${locationId}&minimum=1`)
+//     .then(response => response.json())
+//     .then(appointmentData => {
+//         if (((`${appointmentYear}`) <= (desiredDateEndDate.substring(0, 5))) && ((`${appointmentYear}`) >= (desiredDateEndDate.substring(0, 5)))) {
+//             console.log("Hi!")
+//         }
+//     })
+// }
+
 function generateApptInRange(locationId){
-    let monthWord
-    appointmentTimeData = appointmentData[0].startTimestamp
-    appointmentDuration = appointmentData[0].duration
-    appointmentStartTime = appointmentTimeData.slice(11)
-    appointmentMonth = appointmentTimeData.substring(5,7)
-    getMonthName(appointmentMonth)
-    appointmentDay = appointmentTimeData.substring(8,10)
-    appointmentYear = appointmentTimeData.substring(0,4)
-    appointmentDate = `${appointmentDay} ${monthWord} ${appointmentYear}`
-    // fetch(`https://ttp.cbp.dhs.gov/schedulerapi/slots?orderBy=soonest&limit=1&locationId=${locationId}&minimum=1`)
-    // .then(response => response.json())
-    // .then(appointmentData => {
-    //     if ((`${appointmentYear}`) <= (desiredDateEndDate) && (`${appointmentDate}`)) {
-    //         -${appointmentMonth}-${appointmentDay}
-    //         (appointmentData !== [{}]) && 
-    //     }
-    }
+    fetch(`https://ttp.cbp.dhs.gov/schedulerapi/slots?orderBy=soonest&limit=1&locationId=${locationId}&minimum=1`)
+    .then(response => response.json())
+    .then(appointmentData => {
+        let monthWord
+        appointmentTimeData = appointmentData[0].startTimestamp
+        appointmentDuration = appointmentData[0].duration
+        appointmentStartTime = appointmentTimeData.slice(11)
+        appointmentMonth = appointmentTimeData.substring(5,7)
+        getMonthName(appointmentMonth)
+        appointmentDay = appointmentTimeData.substring(8,10)
+        appointmentYear = appointmentTimeData.substring(0,4)
+        appointmentDate = `${appointmentDay} ${monthWord} ${appointmentYear}`
+        appointmentDateForMachine = `${appointmentYear}-${appointmentMonth}-${appointmentDay}`
+        console.log(typeof desiredDateEnd, desiredDateEnd)
+        if ((Date.parse(appointmentDateForMachine) >= Date.parse(desiredDateStart)) && (Date.parse(desiredDateEnd) >= Date.parse(appointmentDateForMachine))){
+            console.log("Succes!")
+        } else {
+            console.log(appointmentDateForMachine)
+            console.log("Failure! :(")
+        }
+    })
+}
 
 // get today's date to populate the default value of the base picker
 

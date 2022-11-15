@@ -1,0 +1,137 @@
+body {
+    background-color: antiquewhite;
+    background-image: url(./assets/geal-background.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    font-family: "Georgia" !important;
+}
+
+#daddyFlexBody {
+    display: flex;
+    flex-direction: column;
+}
+
+#headerFlexBox{
+    display: flex;
+    flex-direction: column;
+}
+
+.logo {
+    width: 15vh;
+    margin: 2%;
+}
+
+#row1FlexBox, #row2FlexBox {
+    display: flex;
+    flex-direction: row;
+    margin: 2%;
+    justify-content: space-between;
+}
+
+#state-location-selector, #date-selector {
+    display: flex;
+    flex: 1.25 1 0px;
+    justify-content: center;
+}
+
+#cloudLocationInfo, #appointmentOption {
+    display: flex;
+    flex: 2 1 0px;
+    justify-content: center;
+}
+
+#state-menu, #location-menu {
+    background-color: #3c7679 !important;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#row1Space {
+    display: flex;
+    flex: .2 1 0px;
+}
+
+#row2Space {
+    display: flex;
+    flex: .2 1 0px;
+}
+
+#state-location-container, #date-selector-container, #location-info-container, #appointment-info-container {
+    display: flex;
+}
+
+#tagImage {
+    width: auto;
+    height: 30vh;
+    z-index: 3;
+    display: inline-block;
+    position: relative;
+}
+
+#cloudImage {
+    width: 120%;
+    height: 30vh;
+    z-index: 1;
+    display: inline-block;
+    position: relative;
+}
+
+#dropDownContainer, #dateContainer {
+    position: absolute;
+    z-index: 4;
+}
+
+#locationContainer, #appointmentContainer {
+    position: absolute;
+    z-index: 2;
+}
+
+#buttonsContainer {
+    display: block;
+    position: relative;
+}
+
+#topDropDown {
+    display: block;
+    position: relative;
+    top: 5.5vh;
+    left: 115px;
+}
+
+#bottomDropDown {
+    display: block;
+    position: relative;
+    top: 15.5vh;
+    left: 115px;
+}
+
+#topDatePicker {
+    display: block;
+    position: relative;
+    top: 6vh;
+    left: 115px;
+}
+
+#topDatePicker input {
+    border-radius: 1vh;
+    background-color: #3c7679;
+    color: white;
+}
+
+#bottomDatePicker {
+    display: block;
+    position: relative;
+    top: 16.25vh;
+    left: 115px;
+}
+
+#bottomDatePicker input {
+    border-radius: 1vh;
+    background-color: #3c7679;
+    color: white;
+}

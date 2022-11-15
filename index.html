@@ -21,22 +21,38 @@
                 <div id="tagContainer">
                     <img src="./assets/luggage-tag.png" id="luggage-tag">
                     <div id="buttonsContainer">
-                        <div class="dropdown">
-                            <!-- I made the drop downs scrollable -->
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="state-menu" data-toggle="dropdown">
-                                Choose a State
-                            </button>
-                            <div class="dropdown-menu pre-scrollable" aria-labelledby="dropdownMenuButton" id="state-selector"></div>
+                        <div id="topDropDown">
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="state-menu" data-toggle="dropdown">
+                                    Choose a State
+                                </button>
+                                <div class="dropdown-menu pre-scrollable" aria-labelledby="dropdownMenuButton" id="state-selector"></div>
+                            </div>
                         </div>
-                        <div class="dropdown">  
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="location-menu" data-toggle="dropdown">
-                            Choose a Location
-                            </button>
-                            <div class="dropdown-menu pre-scrollable" aria-labelledby="dropdownMenuButton" id="location-selector"></div>
+                        <div id="tagSpacer"></div>
+                        <div id="buttonDropDown">
+                            <div class="dropdown">  
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="location-menu" data-toggle="dropdown">
+                                Choose a Location
+                                </button>
+                                <div class="dropdown-menu pre-scrollable" aria-labelledby="dropdownMenuButton" id="location-selector"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <div id="space"></div>
+            <div id="datePicker">
+                <div id="topDatePicker"></div>
+                <label for="start">Start date:</label>
+                    <input type="date" id="startDate" name="trip-start" value="1995-05-08" min="1997-02-19" max="3000-01-31">
+                <label for="end">End date:</label>
+                    <input type="date" id="endDate" name="trip-start" value="1995-05-08" min="1997-02-19" max="3000-01-31">
+                </div>
+            </div>
+        </div>
+        </div>
+        <div id="horizontalFlexBox">
             <div id="space"></div>
             <div id="location-info">
                 <div id="cloudFlexBox">
@@ -61,16 +77,9 @@
                     </div>
                 </div>
             </div>
-        </div>
-        </div>
-        <div id="horizontalFlexBox">
-            <div id="datePicker">
-                <!-- <h6><strong>Get Alerted When an Apt. Opens Up!</strong></h6> -->
-                <label for="start">Start date:</label>
-                    <input type="date" id="startDate" name="trip-start" value="1995-05-08" min="1997-02-19" max="3000-01-31">
-                <label for="end">End date:</label>
-                    <input type="date" id="endDate" name="trip-start" value="1995-05-08" min="1997-02-19" max="3000-01-31">
-                </div>
+            <div id="space"></div>
+            <div id="nextAvailableAppointment">
+                blah blah bnlah
             </div>
         <div id="footer-flexbox" class="footer">
             <p>Copyright © 2022 Geal, Inc. Allie Soldau & Nicholas Nip - All Rights Reserved.</p>

@@ -25,7 +25,7 @@ body p {
     flex: 1 1 0px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: space-between;
 }
 
 #state-menu, #location-menu {
@@ -45,6 +45,7 @@ body p {
     z-index: 1;
     flex: 1 1 0px;
     font-family: "Georgia";
+    justify-content: space-between;
 }
 
 .container {
@@ -55,13 +56,16 @@ body p {
 #luggage-tag {
     display: inline-block;
     position: absolute;
-    size: contain;
+    size: cover;
     z-index: 1;
-    height: 20vw;
+    width: 33vw;
+    max-width: 400px;
+    font-size: 1.6vw;
 }
 
 #buttonsContainer {
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
     position: relative;
     z-index: 2;
 }
@@ -108,14 +112,22 @@ IT TO GROW AND SHRINK WITH THE PAGE SIZE */
 #horizontalFlexBox {
     display: flex;
     flex-direction: row;
-    vertical-align: middle;
-    margin-top: 5%;
+    vertical-align: center;
+    margin-top: 20px;
+
 }
 
 /* THIS ALLOWS US TO LEAVE THE CENTRAL COLUMN AROUND THE PLANE UNCOVERED */
 #space {
     display: flex;
-    flex: .2 1 0px;
+    width: 11.33vw;
+}
+
+#nextAvailableAppointment {
+    flex: 1 1 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
 }
 
 body {
@@ -143,10 +155,23 @@ body {
 
 .dropdown {
     display: flex;
-    padding-bottom: 6.4vw;
+    /* padding-bottom: 6.4vw; */
     z-index: 2;
     top: 3.5vw;
     left: 8vw;
+    max-width: 250px;
+}
+
+#topDropDown{
+    display: relative;
+    top: 100px;
+    left: 8vw;
+    max-width: 250px;
+}
+
+#tagSpacer {
+    height: 6.4vw;
+    max-height: 79px;
 }
 
 #footer-flexbox{
@@ -177,17 +202,19 @@ input, label {
 
 #datePicker {
     display: flex;
-    margin-left: 10%;
     padding: 2vw;
     border-radius: 4vw;
+    margin-right: 10%;
     flex-direction: column;
+    justify-content: center;
     background-color: white;
     border: .5vw solid darkslategrey;
+    flex: 1 1 0px;
 }
 
 #datePicker label {
     font-weight: bold;
-    font-size: .8rem;
+    font-size: 1.6vw;
 }
 
 #datePicker input {
