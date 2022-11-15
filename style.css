@@ -8,6 +8,10 @@ body {
     -o-background-size: cover;
 }
 
+body p {
+    margin: 0;
+}
+
 #flexbox, #buttonsFlexBox {
     display: flex;
     margin: 10px;
@@ -20,7 +24,10 @@ body {
     position: relative;
     z-index: 1;
     flex: 1 1 0px;
-    padding-left: 80px;
+    padding-left: 100px;
+    padding-top: 80;
+    margin: none !important;
+    font-family: "Georgia";
 }
 
 #cloudFlexBox {
@@ -75,4 +82,12 @@ body {
 .dropdown {
     margin: auto;
     padding-bottom: 10px;
+}
+
+#footer-flexbox{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    width: 100%;
+    justify-content: center;
 }
