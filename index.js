@@ -10,6 +10,8 @@ document.addEventListener("DOMContentLoaded", function() {
     })
 })
 
+
+
 // The following lists are used for data manipulation in the proceeding
 // functions.
 

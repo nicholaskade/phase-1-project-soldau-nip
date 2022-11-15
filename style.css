@@ -29,13 +29,14 @@ body p {
 }
 
 #state-menu, #location-menu {
-    background-color: #2a2c36 !important;
-    height: 4vw;
+    background-color: #3c7679 !important;
+    height: 3.5vw;
     display: inline-block;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-size: 1.7vw;
+    font-size: 1.6vw;
+    width: 20vw;
 }
 
 #location-info, #tagContainer {
@@ -75,14 +76,14 @@ IT TO GROW AND SHRINK WITH THE PAGE SIZE */
     size: contain;
     position: center;
     z-index: 1;
-    height: 35vw; 
+    height: 25vw; 
 }
 
 #cloudTextBox {
     display: inline-block;
-    margin-top: 6.5vw;
-    margin-left: 3vw;
-    margin-right: 3vw;
+    margin-top: 8.5vw;
+    margin-left: 6vw;
+    margin-right: 6vw;
     z-index: 2;
 }
 
@@ -142,8 +143,10 @@ body {
 
 .dropdown {
     display: flex;
-    padding-bottom: 10px;
+    padding-bottom: 6.4vw;
     z-index: 2;
+    top: 3.5vw;
+    left: 8vw;
 }
 
 #footer-flexbox{
