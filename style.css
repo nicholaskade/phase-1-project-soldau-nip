@@ -30,14 +30,15 @@ body p {
 
 #state-menu, #location-menu {
     background-color: #2a2c36 !important;
-    max-width:50%;
+    height: 4vw;
     display: inline-block;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-size: 1.7vw;
 }
 
-#location-info {
+#location-info, #tagContainer {
     display: flex;
     position: relative;
     z-index: 1;
@@ -45,7 +46,7 @@ body p {
     font-family: "Georgia";
 }
 
-#container {
+.container {
     display: inline-block;
     position: relative;
 }
@@ -55,9 +56,13 @@ body p {
     position: absolute;
     size: contain;
     z-index: 1;
-    height: 50vw;
-    top: 100px;
-    left: -19px;
+    height: 20vw;
+}
+
+#buttonsContainer {
+    display: inline-block;
+    position: relative;
+    z-index: 2;
 }
 
 /* USING VIEW WIDTH FOR THE CLOUD IMAGE, CLOUD TEXT BOX, AND CLOUD TEXT ALLOWS
@@ -70,7 +75,7 @@ IT TO GROW AND SHRINK WITH THE PAGE SIZE */
     size: contain;
     position: center;
     z-index: 1;
-    height: 15vw; 
+    height: 35vw; 
 }
 
 #cloudTextBox {
@@ -109,7 +114,7 @@ IT TO GROW AND SHRINK WITH THE PAGE SIZE */
 /* THIS ALLOWS US TO LEAVE THE CENTRAL COLUMN AROUND THE PLANE UNCOVERED */
 #space {
     display: flex;
-    flex: .4 1 0px;
+    flex: .2 1 0px;
 }
 
 body {
@@ -139,11 +144,6 @@ body {
     display: flex;
     padding-bottom: 10px;
     z-index: 2;
-    margin-top: 100px;
-}
-
-#buttonsContainer {
-    margin-top: 130px;
 }
 
 #footer-flexbox{
