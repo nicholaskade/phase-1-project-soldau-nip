@@ -264,8 +264,4 @@ function datePicker() {
         desiredDateEnd = e.target.value
         console.log(desiredDateEnd)
         }
-    let selectedLocations = document.getElementById('selectedLocation')
-    let namePlaceholder = document.getElementById('locationName')
-    console.log(namePlaceholder)
-    selectedLocations.innerText = `${namePlaceholder.innerText}`
     }
