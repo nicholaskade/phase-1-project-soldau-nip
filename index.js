@@ -3,14 +3,17 @@
 // information we will need to construct our application.
 
 document.addEventListener("DOMContentLoaded", function() {
+    initializeGEAL()
+    datePicker()
+})
+
+function initializeGEAL(){
     fetch('https://ttp.cbp.dhs.gov/schedulerapi/locations/?temporary=false&inviteOnly=false&operational=true&serviceName=Global%20Entry')
     .then(response => response.json())
     .then(locationData => {
         pullData(locationData)
     })
-})
-
-
+}
 
 // The following lists are used for data manipulation in the proceeding
 // functions.
@@ -154,11 +157,11 @@ function renderLocations(stateSorter) {
 // poll the DHS's API for Global Entry interview appointments!
 
 function renderLocationInfo(locationInput){
-    const addyPlaceholder = document.getElementById('locationAddress')
-    const namePlaceholder = document.getElementById('locationName')
-    const phonePlaceholder = document.getElementById('locationPhone')
-    const locationMenu = document.getElementById('location-menu')
-    const cityStatePlaceholder = document.getElementById('locationCityState')
+    let addyPlaceholder = document.getElementById('locationAddress')
+    let namePlaceholder = document.getElementById('locationName')
+    let phonePlaceholder = document.getElementById('locationPhone')
+    let locationMenu = document.getElementById('location-menu')
+    let cityStatePlaceholder = document.getElementById('locationCityState')
     locationInfo.forEach((location) => {
         if (location.name === locationInput) {
             addyPlaceholder.innerText = location.address
@@ -166,7 +169,7 @@ function renderLocationInfo(locationInput){
             phonePlaceholder.innerText = location.phoneNumber
             locationMenu.innerText = location.name
             cityStatePlaceholder.innerText = location.city + ", " + location.state
-            generateAppointmentJSON(location.locationId)
+            generateSoonestAppt(location.locationId)
         }
     })
 }
@@ -180,31 +183,89 @@ function renderLocationInfo(locationInput){
 // helping users all over the country find Global Entry appointment slots
 // with ease.
 
-function generateAppointmentJSON(locationId) {
+let appointmentDay
+let appointmentMonth
+let appointmentYear
+let appointmentDate
+let appointmentDuration
+let appointmentStartTime
+let appointmentTimeData
+let desiredDateStart
+let desiredDateEnd
+
+// converts the month in number to the month word src="https://codingbeautydev.com/blog/javascript-convert-month-number-to-name/#:~:text=To%20convert%20a%20month%20number%20to%20a%20month%20name%2C%20create,a%20specified%20locale%20and%20options.&text=Our%20getMonthName()%20function%20takes,the%20month%20with%20that%20position."
+function getMonthName(monthNumber) {
+    const date = new Date();
+    date.setMonth(monthNumber - 1);
+    monthWord = date.toLocaleString('en-US', { month: 'long' });
+}
+
+// TO DO: If we have extra time we can make the start time not in military time
+function generateSoonestAppt(locationId) {
     fetch(`https://ttp.cbp.dhs.gov/schedulerapi/slots?orderBy=soonest&limit=1&locationId=${locationId}&minimum=1`)
     .then(response => response.json())
     .then(appointmentData => {
         let monthWord
-        let appointmentDuration = appointmentData[0].duration
-        let appointmentTimeData = appointmentData[0].startTimestamp
-        let appointmentMonthData = appointmentData[0].startTimestamp
-        let appointmentDayData = appointmentData[0].startTimestamp
-        let appointmentYearData = appointmentData[0].startTimestamp
-        // TO DO: If we have extra time we can make the start time not in military time
-        let appointmentStartTime = appointmentTimeData.slice(11)
-        let appointmentMonth = appointmentMonthData.substring(5,7)
+        appointmentTimeData = appointmentData[0].startTimestamp
+        appointmentDuration = appointmentData[0].duration
+        appointmentStartTime = appointmentTimeData.slice(11)
+        appointmentMonth = appointmentTimeData.substring(5,7)
         getMonthName(appointmentMonth)
-        // converts the month in number to the month word src="https://codingbeautydev.com/blog/javascript-convert-month-number-to-name/#:~:text=To%20convert%20a%20month%20number%20to%20a%20month%20name%2C%20create,a%20specified%20locale%20and%20options.&text=Our%20getMonthName()%20function%20takes,the%20month%20with%20that%20position."
-        function getMonthName(monthNumber) {
-            const date = new Date();
-            date.setMonth(monthNumber - 1);
-            monthWord = date.toLocaleString('en-US', { month: 'long' });
-        }
-        let appointmentDay = appointmentDayData.substring(8,10)
-        let appointmentYear = appointmentYearData.substring(0,4)
-        let appointmentDate = `${appointmentDay} ${monthWord} ${appointmentYear}`
-        console.log(`appointment start time: ${appointmentStartTime}`)
-        console.log(`appointment duration: ${appointmentDuration} minutes`)
-        console.log(`appointment date: ${appointmentDate}`)
+        appointmentDay = appointmentTimeData.substring(8,10)
+        appointmentYear = appointmentTimeData.substring(0,4)
+        appointmentDate = `${appointmentDay} ${monthWord} ${appointmentYear}`
     })
 }
+
+function generateApptInRange(locationId){
+    let monthWord
+    appointmentTimeData = appointmentData[0].startTimestamp
+    appointmentDuration = appointmentData[0].duration
+    appointmentStartTime = appointmentTimeData.slice(11)
+    appointmentMonth = appointmentTimeData.substring(5,7)
+    getMonthName(appointmentMonth)
+    appointmentDay = appointmentTimeData.substring(8,10)
+    appointmentYear = appointmentTimeData.substring(0,4)
+    appointmentDate = `${appointmentDay} ${monthWord} ${appointmentYear}`
+    // fetch(`https://ttp.cbp.dhs.gov/schedulerapi/slots?orderBy=soonest&limit=1&locationId=${locationId}&minimum=1`)
+    // .then(response => response.json())
+    // .then(appointmentData => {
+    //     if ((`${appointmentYear}`) <= (desiredDateEndDate) && (`${appointmentDate}`)) {
+    //         -${appointmentMonth}-${appointmentDay}
+    //         (appointmentData !== [{}]) && 
+    //     }
+    }
+
+// get today's date to populate the default value of the base picker
+
+let today = new Date();
+let dd = String(today.getDate()).padStart(2, '0');
+let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+let yyyy = today.getFullYear();
+
+today = `${yyyy}-${mm}-${dd}`
+
+function datePicker() {
+    let startDate = document.getElementById('startDate')
+    let endDate = document.getElementById('endDate')
+    startDate.value = `${today}`
+    startDate.min = `${today}`
+    endDate.value = `${today}`
+    endDate.min = `${today}`
+    let startDatepicker = document.getElementById('startDate');  
+    startDatepicker.onchange = e => {
+        e.preventDefault();
+        desiredDateStart = e.target.value
+        console.log(desiredDateStart)
+        }  
+    let endDatePicker = document.getElementById('endDate');
+    endDatePicker.onchange = e => {
+        e.preventDefault();
+        desiredDateEnd = e.target.value
+        console.log(desiredDateEnd)
+        }
+    let selectedLocations = document.getElementById('selectedLocation')
+    let namePlaceholder = document.getElementById('locationName')
+    console.log(namePlaceholder)
+    selectedLocations.innerText = `${namePlaceholder.innerText}`
+    }

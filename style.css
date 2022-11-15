@@ -83,7 +83,7 @@ IT TO GROW AND SHRINK WITH THE PAGE SIZE */
     display: inline-block;
     margin-top: 8.5vw;
     margin-left: 6vw;
-    margin-right: 6vw;
+    margin-right: 9.5vw;
     z-index: 2;
 }
 
@@ -154,4 +154,46 @@ body {
     flex-direction: row;
     width: 100%;
     justify-content: center;
+}
+
+label {
+    display: block;
+    font: 1rem 'Fira Sans', sans-serif;
+}
+
+label {
+    display: block;
+    font: 1rem 'Fira Sans', sans-serif;
+}
+
+label {
+    display: block;
+    font: 1rem 'Georgia';
+}
+
+input, label {
+    margin: .4rem 0;
+}
+
+#datePicker {
+    display: flex;
+    margin-left: 10%;
+    padding: 2vw;
+    border-radius: 4vw;
+    flex-direction: column;
+    background-color: white;
+    border: .5vw solid darkslategrey;
+}
+
+#datePicker label {
+    font-weight: bold;
+    font-size: .8rem;
+}
+
+#datePicker input {
+    border-radius: 1vw;
+}
+
+#selectedLocation {
+    margin-top: 2vw;
 }
