@@ -6,13 +6,14 @@ body {
     background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
+    font-family: "Georgia" !important;
 }
 
 body p {
     margin: 0;
 }
 
-#flexbox, #buttonsFlexBox {
+#flexbox {
     display: flex;
     margin: 10px;
     flex-direction: column;
@@ -20,43 +21,53 @@ body p {
     flex: 1 1 0px;
 }
 
+#buttonsFlexBox {
+    flex: 1 1 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 #location-info {
     position: relative;
     z-index: 1;
     flex: 1 1 0px;
-    padding-left: 100px;
-    padding-top: 80;
     margin: none !important;
     font-family: "Georgia";
 }
-
+/* I made the cloud a fixed size regardless of text content */
 #cloudFlexBox {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    padding: 80px;
+    vertical-align: middle;
+    height: 250px;
     background-image: url("./assets/cloud.png");
     opacity: 0.5;
     background-size: contain;
     background-repeat: no-repeat;
+    background-position: center;
     flex: 1.5 1 0px;
-    position: absolute;
     z-index: -1;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
+}
+
+#cloudTextFlexBox {
+    display: block;
+    position: relative;
+    top: 110px;
+    left: 100px;
 }
 
 #cloudText {
     opacity: 1;
     display: flex;
     flex-direction: column;
+    font-size: 1.1rem;
 }
 
 #horizontalFlexBox {
     display: flex;
     flex-direction: row;
+    vertical-align: middle;
 }
 
 body {
@@ -80,8 +91,10 @@ body {
 }
 
 .dropdown {
-    margin: auto;
+    justify-content: center;
     padding-bottom: 10px;
+    position: relative;
+    margin-left: 30%;
 }
 
 #footer-flexbox{
