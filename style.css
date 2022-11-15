@@ -45,6 +45,16 @@ body p {
     position: relative;
 }
 
+#luggage-tag {
+    display: inline-block;
+    position: absolute;
+    size: contain;
+    z-index: 1;
+    height: 50vw;
+    top: 100px;
+    left: -19px;
+}
+
 /* USING VIEW WIDTH FOR THE CLOUD IMAGE, CLOUD TEXT BOX, AND CLOUD TEXT ALLOWS
 IT TO GROW AND SHRINK WITH THE PAGE SIZE */
 #cloudImage {
@@ -118,9 +128,17 @@ body {
     width: 20vw;
 }
 
+/* TO DO: NEED TO CHANGE DROP DOWN BUTTONS SIZING TO BE DYNAMIC!!! */
+
 .dropdown {
     display: flex;
     padding-bottom: 10px;
+    z-index: 2;
+    margin-top: 100px;
+}
+
+#buttonsContainer {
+    margin-top: 130px;
 }
 
 #footer-flexbox{
