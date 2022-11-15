@@ -74,12 +74,15 @@ body {
 }
 
 #cloudImage {
-    width: 120%;
-    height: 30vh;
+    height: 35vh;
     z-index: 1;
     display: inline-block;
     position: relative;
 }
+
+/* TO DO: DROP DOWN CONTAINERS SHIFT WHEN YOU CHANGE SCREEN HEIGHT
+WHAT IF INSTEAD OF TRYING TO LAY THEM IN THE PREMADE WHITE TAGS
+WE MAKE THE OUTLINE ON THE DIV ITSELF TO AVOID ALIGNMENT ISSUES? */
 
 #dropDownContainer, #dateContainer {
     position: absolute;
@@ -134,4 +137,40 @@ body {
     border-radius: 1vh;
     background-color: #3c7679;
     color: white;
+}
+
+#cloudTextBox {
+    display: flex;
+    margin-left: 49px;
+    padding-right: 200px;
+    margin-top: 9vh;
+}
+
+#cloudText {
+    display: flex;
+    flex-direction: column;
+}
+
+#locationName {
+    font-weight: bold;
+}
+
+#cloudText p {
+    margin-bottom: 5px;
+}
+
+.inset {
+    margin-left: 20px;
+}
+
+#footerFlexBox {
+    display: flex;
+    justify-content: center;
+}
+
+#footer {
+    position: absolute;
+    bottom: 0px;
+    font-family: "Georgia";
+    font-size: 1.25vw;
 }
