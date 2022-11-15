@@ -51,10 +51,8 @@ body p {
 }
 
 #cloudTextFlexBox {
-    display: block;
-    position: relative;
-    top: 110px;
-    left: 100px;
+    display: flex;
+    justify-content: center;
 }
 
 #cloudText {
@@ -62,6 +60,15 @@ body p {
     display: flex;
     flex-direction: column;
     font-size: 1.1rem;
+    margin-top: 35%;
+}
+
+#locationName {
+    font-weight: bold;
+}
+
+#locationAddress, #locationCityState, #locationPhone {
+    margin-left: 15px;
 }
 
 #horizontalFlexBox {
