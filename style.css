@@ -28,6 +28,10 @@ body p {
     justify-content: center;
 }
 
+#state-menu, #location-menu {
+    background-color: #2a2c36 !important;
+}
+
 #location-info {
     position: relative;
     z-index: 1;
@@ -40,7 +44,7 @@ body p {
     display: flex;
     flex-direction: column;
     vertical-align: middle;
-    height: 25vw;
+    height: 15vw;
     background-image: url("./assets/cloud.png");
     opacity: 0.5;
     background-size: contain;
@@ -53,14 +57,17 @@ body p {
 #cloudTextBox {
     display: flex;
     justify-content: center;
-    margin-top: 23%;
+    margin-top: 13%;
+    position: relative;
+    z-index: 2;
 }
 
+/* TO DO: MAKE THE TEXT SHRINK OR WRAP IF ITS TOO LONG */
 #cloudText {
     opacity: 1;
     display: flex;
     flex-direction: column;
-    font-size: 2vw; /* makes text adjust with viewport width.
+    font-size: 1.3vw; /* makes text adjust with viewport width.
     since I made the cloud ALSO adjust with the viewport width, the 
     text will change size as the cloud does, ensuring they always fit together */
 }
