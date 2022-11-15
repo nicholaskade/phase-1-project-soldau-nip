@@ -81,13 +81,19 @@ IT TO GROW AND SHRINK WITH THE PAGE SIZE */
 }
 
 #locationAddress, #locationCityState, #locationPhone {
-    margin-left: 15px;
+    margin-left: 5vw;
 }
 
 #horizontalFlexBox {
     display: flex;
     flex-direction: row;
     vertical-align: middle;
+}
+
+/* THIS ALLOWS US TO LEAVE THE CENTRAL COLUMN AROUND THE PLANE UNCOVERED */
+#space {
+    display: flex;
+    flex: .4 1 0px;
 }
 
 body {
