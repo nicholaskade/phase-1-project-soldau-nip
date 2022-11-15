@@ -25,7 +25,7 @@ body p {
     flex: 1 1 0px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-end;
 }
 
 #state-menu, #location-menu {
@@ -81,13 +81,14 @@ IT TO GROW AND SHRINK WITH THE PAGE SIZE */
 }
 
 #locationAddress, #locationCityState, #locationPhone {
-    margin-left: 5vw;
+    margin-left: 2vw;
 }
 
 #horizontalFlexBox {
     display: flex;
     flex-direction: row;
     vertical-align: middle;
+    margin-top: 5%;
 }
 
 /* THIS ALLOWS US TO LEAVE THE CENTRAL COLUMN AROUND THE PLANE UNCOVERED */
@@ -109,24 +110,22 @@ body {
     left: 0px;
     font-family: "Georgia";
     text-align: center;
+    font-size: 1.25vw;
 }
 
 .logo {
     height: auto;
-    width: 300px;
+    width: 20vw;
 }
 
 .dropdown {
-    justify-content: center;
+    display: flex;
     padding-bottom: 10px;
-    position: relative;
-    margin-left: 30%;
 }
 
 #footer-flexbox{
     display: flex;
     flex-direction: row;
-    gap: 10px;
     width: 100%;
     justify-content: center;
 }

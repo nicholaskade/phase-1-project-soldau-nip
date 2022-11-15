@@ -93,6 +93,9 @@ function renderStates() {
             e.preventDefault()
             stateSorter = e.target.innerText
             let stateButtonText = document.getElementById('state-menu')
+            // I THINK WE SHOULD CONSIDER THE DROP DOWN NOT HAVING THE STATE
+            // AS THE DISPLAY TEXT BECAUSE IT MAKES IT SO THE LOCATION IS MUCH TOO LONG
+            // MAYBE WE CAN DISPLAY IT UNDERNEITH INSTEAD
             stateButtonText.innerText = stateSorter
             renderLocations(stateSorter)        
         })
