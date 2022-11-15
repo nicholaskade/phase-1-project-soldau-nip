@@ -30,6 +30,11 @@ body p {
 
 #state-menu, #location-menu {
     background-color: #2a2c36 !important;
+    max-width:50%;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 #location-info {
@@ -61,7 +66,7 @@ IT TO GROW AND SHRINK WITH THE PAGE SIZE */
     display: inline-block;
     position: absolute;
     src: url("./assets/cloud.png");
-    opacity: 0.5;
+    opacity: 1;
     size: contain;
     position: center;
     z-index: 1;
@@ -71,7 +76,8 @@ IT TO GROW AND SHRINK WITH THE PAGE SIZE */
 #cloudTextBox {
     display: inline-block;
     margin-top: 6.5vw;
-    margin-left: 5vw;
+    margin-left: 3vw;
+    margin-right: 3vw;
     z-index: 2;
 }
 
