@@ -178,10 +178,31 @@ function renderLocationInfo(locationInput){
 // helping users all over the country find Global Entry appointment slots
 // with ease.
 
-function generateAppointmentJSON(locationId){
+function generateAppointmentJSON(locationId) {
     fetch(`https://ttp.cbp.dhs.gov/schedulerapi/slots?orderBy=soonest&limit=1&locationId=${locationId}&minimum=1`)
     .then(response => response.json())
     .then(appointmentData => {
-        console.log(appointmentData)
+        let monthWord
+        let appointmentDuration = appointmentData[0].duration
+        let appointmentTimeData = appointmentData[0].startTimestamp
+        let appointmentMonthData = appointmentData[0].startTimestamp
+        let appointmentDayData = appointmentData[0].startTimestamp
+        let appointmentYearData = appointmentData[0].startTimestamp
+        // TO DO: If we have extra time we can make the start time not in military time
+        let appointmentStartTime = appointmentTimeData.slice(11)
+        let appointmentMonth = appointmentMonthData.substring(5,7)
+        getMonthName(appointmentMonth)
+        // converts the month in number to the month word src="https://codingbeautydev.com/blog/javascript-convert-month-number-to-name/#:~:text=To%20convert%20a%20month%20number%20to%20a%20month%20name%2C%20create,a%20specified%20locale%20and%20options.&text=Our%20getMonthName()%20function%20takes,the%20month%20with%20that%20position."
+        function getMonthName(monthNumber) {
+            const date = new Date();
+            date.setMonth(monthNumber - 1);
+            monthWord = date.toLocaleString('en-US', { month: 'long' });
+        }
+        let appointmentDay = appointmentDayData.substring(8,10)
+        let appointmentYear = appointmentYearData.substring(0,4)
+        let appointmentDate = `${appointmentDay} ${monthWord} ${appointmentYear}`
+        console.log(`appointment start time: ${appointmentStartTime}`)
+        console.log(`appointment duration: ${appointmentDuration} minutes`)
+        console.log(`appointment date: ${appointmentDate}`)
     })
 }

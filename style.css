@@ -81,7 +81,6 @@ IT TO GROW AND SHRINK WITH THE PAGE SIZE */
     z-index: 2;
 }
 
-/* TO DO: MAKE THE TEXT SHRINK OR WRAP IF ITS TOO LONG */
 #cloudText {
     opacity: 1;
     display: flex;
