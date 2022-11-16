@@ -39,6 +39,8 @@ let locationInfo = []
 let validStates = []
 let stateSorter
 
+const alertChime = new Audio('./assets/alert-chime.mp3')
+
 function pullData(locationData){
     locationData.forEach((location) => {
         if (location.shortName !== "Permanently Closed") {
@@ -121,7 +123,7 @@ function renderLocationInfo(locationInput){
             phonePlaceholder.innerText = location.phoneNumber
             locationMenu.innerText = location.name
             cityStatePlaceholder.innerText = location.city + ", " + location.state
-            generateSoonestAppt(location.locationId)
+            generateApptInRange(location.locationId)
         }
     })
 }
@@ -160,6 +162,7 @@ function generateSoonestAppt(locationId) {
         appointmentYear = appointmentTimeData.substring(0,4)
         appointmentDate = `${appointmentDay} ${monthWord} ${appointmentYear}`
         appointmentTimestamp = appointmentData[0].startTimestamp
+        
     })
 }
 
@@ -168,22 +171,26 @@ function generateApptInRange(locationId){
     fetch(`https://ttp.cbp.dhs.gov/schedulerapi/locations/${locationId}/slots?startTimestamp=${desiredDateStart}T00%3A00%3A00&endTimestamp=${desiredDateEnd}T00%3A00%3A00`)
     .then(response => response.json())
     .then(appointmentData => {
+        JSONcontainer = appointmentData
+        console.log(JSONcontainer)
         let monthWord
-        appointmentTimeData = appointmentData[0].startTimestamp
-        appointmentDuration = appointmentData[0].duration
-        appointmentStartTime = appointmentTimeData.slice(11)
-        appointmentMonth = appointmentTimeData.substring(5,7)
-        getMonthName(appointmentMonth)
-        appointmentDay = appointmentTimeData.substring(8,10)
-        appointmentYear = appointmentTimeData.substring(0,4)
-        appointmentDate = `${appointmentDay} ${monthWord} ${appointmentYear}`
-        appointmentTimestamp = appointmentData[0].startTimestamp
-        appointmentDateForMachine = Date.parse(appointmentTimestamp)
-        if ((appointmentDateForMachine >= Date.parse(desiredDateStart)) && (Date.parse(desiredDateEnd) >= appointmentDateForMachine)){
-            console.log("Succes!")
+        if (JSONcontainer.length != 0) {
+            console.log(JSONcontainer.length)
+            alertChime.play()
+            alert(`There are ${JSONcontainer.length} appointments that match your search.`)
+            window.open('https://ttp.cbp.dhs.gov/schedulerui/schedule-interview/location?lang=en&vo=true')
+            // appointmentTimeData = appointmentData[0].startTimestamp
+            // appointmentDuration = appointmentData[0].duration
+            // appointmentStartTime = appointmentTimeData.slice(11)
+            // appointmentMonth = appointmentTimeData.substring(5,7)
+            // getMonthName(appointmentMonth)
+            // appointmentDay = appointmentTimeData.substring(8,10)
+            // appointmentYear = appointmentTimeData.substring(0,4)
+            // appointmentDate = `${appointmentDay} ${monthWord} ${appointmentYear}`
+            // appointmentTimestamp = appointmentData[0].startTimestamp
         } else {
-            console.log(appointmentDateForMachine)
-            console.log("Failure! :(")
+            alertChime.play()
+            alert("There are no appointments yet!")
         }
     })
 }
