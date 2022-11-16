@@ -38,7 +38,7 @@ body {
 #collapseMakers {
     display: flex;
     justify-content: center;
-    margin-right: 5%;
+    margin-right: 7%;
 }
 
 #collapsable1, #collapsable2, #collapsable3 {
@@ -239,6 +239,7 @@ input {
 #locationContainer, #appointmentContainer {
     position: absolute;
     z-index: 2;
+    width: 415px;
 }
 
 /* TO DO: CHANGE TO ABSOLUTE AND F WITH LOCATION SO IT WORKS */
@@ -307,8 +308,7 @@ label {
 #cloudTextBox {
     display: relative;
     margin-left: 50px;
-    margin-right: 95px;
-    margin-top: 90px;
+    margin-top: 85px;
 }
 
 #cloudText {

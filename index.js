@@ -6,7 +6,6 @@ document.addEventListener("DOMContentLoaded", function() {
     initializeGEAL()
     datePicker()
     renderNavBar()
-    
 })
 
 function renderNavBar() {

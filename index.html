@@ -1,7 +1,7 @@
 <html>
     <head>
         <script src="./index.js"></script>
-        <link rel="stylesheet" href= "style.css">
+        <link rel="stylesheet" href= "styles.css">
         <title>geal</title>
         <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -9,80 +9,150 @@
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script src="http://kit.fontawesome.com/67c66657c7.js"></script>
     </head>
     <body>
-        <div id="flexbox">
-        <div class="header" id="flexbox">
-            <img src="./assets/geal-logo-new.png" class="logo">
-        </div>
-        <div id="horizontalFlexBox">
-            <div id="space"></div>
-            <div id="buttonsFlexBox">
-                <div id="tagContainer">
-                    <img src="./assets/luggage-tag.png" id="luggage-tag">
-                    <div id="buttonsContainer">
-                        <div id="topDropDown">
-                            <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="state-menu" data-toggle="dropdown">
-                                    Choose a State
-                                </button>
-                                <div class="dropdown-menu pre-scrollable" aria-labelledby="dropdownMenuButton" id="state-selector"></div>
+        <div id="daddyFlexBody">
+            <div id="headerFlexBox">
+                <div id="logoFlexBox">
+                    <img src="./assets/geal-logo-new.png" class="logo">
+                </div>
+                <div id="collapseMakers"> <!-- aka container -->
+                    <input type="checkbox" id="check1">
+                    <input type="checkbox" id="check2">
+                    <input type="checkbox" id="check3">
+                    <div id="headerCollapsableButtonBox">
+                        <div id="collapsable1">
+                            <label for="check1" class="bar bar1">
+                                <div class="symbol">
+                                    <span id="minus1">-</span>
+                                    <span id="plus1">+</span>
+                                </div>
+                                <i class="fa fa-user"></i>
+                            about us</label>
+                            <div class="data data1">
+                                Hey! We're <em>geal</em>!<br><br> <em>geal</em> stands for (global entry appointment locator).
+                                This small but mighty org is made up of Allie and Nicholas. We're just a couple of fresh software engineers trying to make their way through the 
+                                Flatiron School's software engineering bootcamp. 
                             </div>
                         </div>
-                        <div id="tagSpacer"></div>
-                        <div id="buttonDropDown">
-                            <div class="dropdown">  
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="location-menu" data-toggle="dropdown">
-                                Choose a Location
-                                </button>
-                                <div class="dropdown-menu pre-scrollable" aria-labelledby="dropdownMenuButton" id="location-selector"></div>
+                        <div id="collapsable2">
+                            <label for="check2" class="bar bar2">
+                                <div class="symbol">
+                                    <span id="minus2">-</span>
+                                    <span id="plus2">+</span>
+                                </div>
+                                <i class="fa fa-paper-plane-o"></i>
+                            site purpose</label>
+                            <div class="data data2">
+                                This website was designed to help you those trying to book a Global Entry interview. Having both experienced
+                                the nightmare of trying to snag an elusive interview slot, Allie and Nick decided to make this site to
+                                make the process easier.
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div id="space"></div>
-            <div id="datePicker">
-                <div id="topDatePicker"></div>
-                <label for="start">Start date:</label>
-                    <input type="date" id="startDate" name="trip-start" value="1995-05-08" min="1997-02-19" max="3000-01-31">
-                <label for="end">End date:</label>
-                    <input type="date" id="endDate" name="trip-start" value="1995-05-08" min="1997-02-19" max="3000-01-31">
-                </div>
-            </div>
-        </div>
-        </div>
-        <div id="horizontalFlexBox">
-            <div id="space"></div>
-            <div id="location-info">
-                <div id="cloudFlexBox">
-                    <div class="container">
-                        <img id=cloudImage src="./assets/cloud.png">
-                        <div id="cloudTextBox">
-                            <div id="cloudText">
-                                <div id="cloudTextBoxes">
-                                    <p id="locationName"></p>
+                        <div id="collapsable3">
+                            <label for="check3" class="bar bar3">
+                                <div class="symbol">
+                                    <span id="minus3">-</span>
+                                    <span id="plus3">+</span>
                                 </div>
-                                <div id="cloudTextBoxes">
-                                    <p id="locationAddress"></p>
-                                </div>
-                                <div id="cloudTextBoxes">
-                                    <p id="locationCityState"></p>
-                                </div>
-                                <div id="cloudTextBoxes">
-                                    <p id="locationPhone"></p>
-                                </div>
+                                <i class="fa fa-desktop"></i>
+                            site how-to</label>
+                            <div class="data data3">
+                                Choose your state, pick a location, and enter your desired time winder. The <em>geal</em> site will then
+                                let you know when the next available appointment is within your desired constraints. Additionally, you can 
+                                set up an alert to let you know if a sooner appointment becomes available, as it becomes available, so that
+                                you can book it pronto.
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div id="space"></div>
-            <div id="nextAvailableAppointment">
-                blah blah bnlah
+            <div id="row1FlexBox">
+                <div id="state-location-selector">
+                    <div id="state-location-container">
+                        <img src="./assets/luggage-tag.png" id="tagImage">
+                        <div id="dropDownContainer">
+                            <div id="buttonsContainer">
+                                <div id="topDropDown">
+                                    <div class="dropdown">
+                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="state-menu" data-toggle="dropdown">
+                                            Choose a State
+                                        </button>
+                                        <div class="dropdown-menu pre-scrollable" aria-labelledby="dropdownMenuButton" id="state-selector"></div>
+                                    </div>
+                                </div>
+                                <div id="bottomDropDown">
+                                    <div class="dropdown">  
+                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="location-menu" data-toggle="dropdown">
+                                        Choose a Location
+                                        </button>
+                                        <div class="dropdown-menu pre-scrollable" aria-labelledby="dropdownMenuButton" id="location-selector"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="row1Space"></div>
+                <div id="date-selector">
+                    <div id="date-selector-container">
+                        <img src="./assets/luggage-tag.png" id="tagImage">
+                        <div id="dateContainer">
+                            <div id="datePicker">
+                                <div id="topDatePicker">
+                                    <label for="start">Start date:</label>
+                                    <input type="date" id="startDate" name="trip-start" value="1995-05-08" min="1997-02-19" max="3000-01-31">
+                                </div>
+                                <div id="bottomDatePicker">
+                                    <label for="end">End date:</label>
+                                    <input type="date" id="endDate" name="trip-start" value="1995-05-08" min="1997-02-19" max="3000-01-31">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        <div id="footer-flexbox" class="footer">
-            <p>Copyright © 2022 Geal, Inc. Allie Soldau & Nicholas Nip - All Rights Reserved.</p>
+            <div id="row2FlexBox">
+                <div id="cloudLocationInfo">
+                    <div id="location-info-container">
+                        <img src="./assets/cloud.png" id="cloudImage">
+                        <div id="locationContainer">
+                            <div id="cloudTextBox">
+                                <div id="cloudText">
+                                    <p id="locationName">Fake Fancy Appointment Center</p>
+                                    <p id="locationAddress" class="inset">test apt address</p>
+                                    <p id="locationCityState" class="inset">test apt city state</p>
+                                    <p id="locationPhone" class="inset">test apt phone number</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="row2Space"></div>
+                <div id="appointmentOption">
+                    <div id="appointment-info-container">
+                        <img src="./assets/cloud.png" id="cloudImage">
+                        <div id="appointmentContainer">
+                            <div id="cloudTextBox">
+                                <div id="cloudText">
+                                    <p id="appointmentHeader">Next Available Appointment</p>
+                                    <p id="timeAptInfo" class="inset">Time and Stuff</p>
+                                    <p id="dateAptInfo" class="inset">Date and Stuff</p>
+                                    <p id="alertApt" class="inset">Option to set up alert if this changes</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="footerFlexBox">
+            <div id="footer">
+                <p>Copyright © 2022 Geal, Inc. Allie Soldau & Nicholas Nip - All Rights Reserved.</p>
+            </div>
         </div>
     </body>
-</html>
+
+
+
