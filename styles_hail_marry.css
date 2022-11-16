@@ -18,7 +18,7 @@ body {
 #headerFlexBox{
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
 
 }
 #logoFlexBox {
@@ -307,7 +307,7 @@ label {
 #cloudTextBox {
     display: relative;
     margin-left: 50px;
-    padding-right: 95px;
+    margin-right: 95px;
     margin-top: 90px;
 }
 
