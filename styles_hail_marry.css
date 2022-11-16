@@ -19,23 +19,24 @@ body {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    color: purple;
 }
 #logoFlexBox {
     display: flex;
 }
 
 #headerCollapsableButtonBox {
-    width: 100%;
-    margin: 15px;
-    background: #3c7679;
-    border-radius: 15px;
+    width: 80%;
+    margin: 25px;
+    background: whitesmoke;
+    border-radius: 25px;
     overflow: hidden;
     display: flex;
 }
 
 #collapseMakers {
     display: flex;
+    justify-content: center;
+    margin-right: 5%;
 }
 
 #collapsable1, #collapsable2, #collapsable3 {
@@ -47,9 +48,9 @@ body {
 .bar {
     width: 88%;
     position: relative;
-    background: whitesmoke;
-    color: black;
-    border-radius: 15px;
+    background: #3c7679;
+    color: white;
+    border-radius: 20px;
     display: block;
     height: 60px;
     line-height: 60px;
@@ -83,8 +84,8 @@ i {
     right: 0;
     height: 30px;
     width: 30px;
-    background: orange;
-    color: red;
+    background: #74cbd3;
+    color: black;
     font-size: 20px;
     line-height: 30px;
     top: 50%;
@@ -113,7 +114,7 @@ i {
     color: black;
     margin: auto;
     font-size: 15px;
-    text-align: justify;
+    text-align: left;
     padding: 0 20px 20px 20px;
     border-radius: 0 0 15px 15px;
     position: relative;
@@ -129,8 +130,8 @@ i {
 }
 
 .data1.show, .data2.show, .data3.show {
-    background-color: black;
-    color: white;
+    background-color: whitesmoke;
+    color: black;
 }
 
 
@@ -143,7 +144,7 @@ input {
 #check2:checked ~ #headerCollapsableButtonBox .bar2,
 #check3:checked ~ #headerCollapsableButtonBox .bar3 {
     border-radius: 15px 15px 0 0;
-    background: pink;
+    background: grey;
 }
 
 #check1:checked ~ #headerCollapsableButtonBox .bar #plus1,
@@ -157,12 +158,12 @@ input {
 #check3:checked ~ #headerCollapsableButtonBox .bar #minus3 {
     display: block;
     color: black;
-    background-color: white;
+    background-color: #74cbd3;
 }
 
 .logo {
     width: 15vh;
-    margin: 2%;
+    margin: 10%;
     height: auto;
 }
 

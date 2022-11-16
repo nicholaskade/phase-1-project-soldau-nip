@@ -5,6 +5,7 @@
 document.addEventListener("DOMContentLoaded", function() {
     initializeGEAL()
     datePicker()
+    // nav bar help from https://www.youtube.com/watch?v=1E-oj_81Caw&ab_channel=WebKitCoding
     let bar1 = document.querySelector(".bar1")
     let bar2 = document.querySelector(".bar1")
     let bar3 = document.querySelector(".bar1")
