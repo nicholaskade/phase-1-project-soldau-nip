@@ -16,12 +16,154 @@ body {
 
 #headerFlexBox{
     display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: purple;
+}
+#logoFlexBox {
+    display: flex;
+}
+
+#headerCollapsableButtonBox {
+    width: 100%;
+    margin: 15px;
+    background: #3c7679;
+    border-radius: 15px;
+    overflow: hidden;
+    display: flex;
+}
+
+#collapseMakers {
+    display: flex;
+}
+
+#collapsable1, #collapsable2, #collapsable3 {
+    display: flex;
     flex-direction: column;
+    width: 100%;
+}
+
+.bar {
+    width: 88%;
+    position: relative;
+    background: whitesmoke;
+    color: black;
+    border-radius: 15px;
+    display: block;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    padding: 0 20px;
+    cursor: pointer;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 0;
+    font-size: 15px;
+    text-transform: uppercase;
+    transition: 0.3s ease;
+    z-index: 1;
+}
+
+i {
+    position: absolute;
+    font-size: 20px;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.symbol {
+    position: relative;
+}
+
+#plus1, #plus2, #plus3 {
+    display: block;
+    position: absolute;
+    right: 0;
+    height: 30px;
+    width: 30px;
+    background: orange;
+    color: red;
+    font-size: 20px;
+    line-height: 30px;
+    top: 50%;
+    transform: translateY(50%);
+    border-radius: 50%;
+}
+
+#minus1, #minus2, #minus3 {
+    display: none;
+    position: absolute;
+    right: 0;
+    height: 30px;
+    width: 30px;
+    background: black;
+    color: white;
+    font-size: 20px;
+    line-height: 30px;
+    top: 50%;
+    transform: translateY(50%);
+    border-radius: 50%;
+}
+
+.data {
+    width: 80%;
+    background: grey;
+    color: black;
+    margin: auto;
+    font-size: 15px;
+    text-align: justify;
+    padding: 0 20px 20px 20px;
+    border-radius: 0 0 15px 15px;
+    position: relative;
+    transition: 0.3s ease;
+    top: -40px;
+    height: 0px;
+}
+
+.data.show {
+    padding-top: 40px;
+    top: -25px;
+    height: 270px;
+}
+
+.data1.show, .data2.show, .data3.show {
+    background-color: black;
+    color: white;
+}
+
+
+input {
+    -webkit-appearance: none; /*might need -webkit-appearance */
+    display: none;
+}
+
+#check1:checked ~ #headerCollapsableButtonBox .bar1,
+#check2:checked ~ #headerCollapsableButtonBox .bar2,
+#check3:checked ~ #headerCollapsableButtonBox .bar3 {
+    border-radius: 15px 15px 0 0;
+    background: pink;
+}
+
+#check1:checked ~ #headerCollapsableButtonBox .bar #plus1,
+#check2:checked ~ #headerCollapsableButtonBox .bar #plus2,
+#check3:checked ~ #headerCollapsableButtonBox .bar #plus3 {
+    display: none;
+}
+
+#check1:checked ~ #headerCollapsableButtonBox .bar #minus1,
+#check2:checked ~ #headerCollapsableButtonBox .bar #minus2,
+#check3:checked ~ #headerCollapsableButtonBox .bar #minus3 {
+    display: block;
+    color: black;
+    background-color: white;
 }
 
 .logo {
     width: 15vh;
     margin: 2%;
+    height: auto;
 }
 
 #row1FlexBox, #row2FlexBox {
@@ -142,7 +284,7 @@ WE MAKE THE OUTLINE ON THE DIV ITSELF TO AVOID ALIGNMENT ISSUES? */
 #cloudTextBox {
     display: flex;
     margin-left: 49px;
-    padding-right: 200px;
+    padding-right: 90px;
     margin-top: 9vh;
 }
 

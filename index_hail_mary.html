@@ -9,11 +9,60 @@
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script src="http://kit.fontawesome.com/67c66657c7.js"></script>
     </head>
     <body>
         <div id="daddyFlexBody">
             <div id="headerFlexBox">
-                <img src="./assets/geal-logo-new.png" class="logo">
+                <div id="logoFlexBox">
+                    <img src="./assets/geal-logo-new.png" class="logo">
+                </div>
+                <div id="collapseMakers">
+                    <input type="checkbox" id="check1">
+                    <input type="checkbox" id="check2">
+                    <input type="checkbox" id="check3">
+                    <div id="headerCollapsableButtonBox">
+                        <div id="collapsable1">
+                            <label for="check1" class="bar bar1">
+                                <div class="symbol">
+                                    <span id="minus1">-</span>
+                                    <span id="plus1">+</span>
+                                </div>
+                                <i class="fa fa-user"></i>
+                            about us</label>
+                            <div class="data data1">
+                                this is the data in the first expandable
+                                this is the data in the first expandable
+                                this is the data in the first expandable
+                                this is the data in the first expandable
+                            </div>
+                        </div>
+                        <div id="collapsable2">
+                            <label for="check2" class="bar bar2">
+                                <div class="symbol">
+                                    <span id="minus2">-</span>
+                                    <span id="plus2">+</span>
+                                </div>
+                                <i class="fa fa-paper-plane-o"></i>
+                            site purpose</label>
+                            <div class="data data2">
+                                this is the data in the 2nd expandable
+                            </div>
+                        </div>
+                        <div id="collapsable3">
+                            <label for="check3" class="bar bar3">
+                                <div class="symbol">
+                                    <span id="minus3">-</span>
+                                    <span id="plus3">+</span>
+                                </div>
+                                <i class="fa fa-desktop"></i>
+                            site how-to</label>
+                            <div class="data data3">
+                                this is the data in the 3rd expandable
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div id="row1FlexBox">
                 <div id="state-location-selector">
