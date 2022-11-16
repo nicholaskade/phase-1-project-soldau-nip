@@ -110,8 +110,8 @@ i {
 
 .data {
     width: 80%;
-    background: grey;
-    color: black;
+    background: fff;
+    color: whitesmoke;
     margin: auto;
     font-size: 15px;
     text-align: left;

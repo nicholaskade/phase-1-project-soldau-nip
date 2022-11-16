@@ -5,17 +5,24 @@
 document.addEventListener("DOMContentLoaded", function() {
     initializeGEAL()
     datePicker()
+    renderNavBar()
+    
+})
+
+function renderNavBar() {
     // nav bar help from https://www.youtube.com/watch?v=1E-oj_81Caw&ab_channel=WebKitCoding
     let bar1 = document.querySelector(".bar1")
-    let bar2 = document.querySelector(".bar1")
-    let bar3 = document.querySelector(".bar1")
+    let bar2 = document.querySelector(".bar2")
+    let bar3 = document.querySelector(".bar3")
 
     bar1.addEventListener("click", function() {
+        console.log(`clicked 1`)
         let data1 = document.querySelector(".data1")
         data1.classList.toggle('show')
     })
 
     bar2.addEventListener("click", function() {
+        console.log(`clicked 2`)
         let data2 = document.querySelector(".data2")
         data2.classList.toggle('show')
     })
@@ -23,8 +30,9 @@ document.addEventListener("DOMContentLoaded", function() {
     bar3.addEventListener("click", function() {
         let data3 = document.querySelector(".data3")
         data3.classList.toggle('show')
+        console.log(`clicked 3`)
     })
-})
+}
 
 function initializeGEAL(){
     fetch('https://ttp.cbp.dhs.gov/schedulerapi/locations/?temporary=false&inviteOnly=false&operational=true&serviceName=Global%20Entry')
