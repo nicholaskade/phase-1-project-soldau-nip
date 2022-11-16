@@ -328,6 +328,28 @@ label {
     margin-left: 20px;
 }
 
+#alertBox {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+#formBox {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.btn.btn-default.active.toggle-off {
+    background-color:grey ;
+    color: white;
+}
+
+.btn.btn-primary.toggle-on {
+    /* background-color:red ; */
+    color: white;
+}
+
 #footerFlexBox {
     display: flex;
     justify-content: center;
