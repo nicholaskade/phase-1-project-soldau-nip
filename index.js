@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
     initializeGEAL()
-    datePicker()
     renderNavBar()
 })
 
@@ -31,6 +30,7 @@ function initializeGEAL(){
     .then(response => response.json())
     .then(locationData => {
         pullData(locationData)
+        datePicker()
     })
 }
 
@@ -123,7 +123,7 @@ function renderLocationInfo(locationInput){
             phonePlaceholder.innerText = location.phoneNumber
             locationMenu.innerText = location.name
             cityStatePlaceholder.innerText = location.city + ", " + location.state
-            generateApptInRange(location.locationId)
+            generateSoonestAppt(location.locationId)
         }
     })
 }
@@ -140,6 +140,8 @@ let desiredDateStart
 let desiredDateEnd
 let appointmentTimestamp
 
+let monthWord
+
 // converts the month in number to the month word src="https://codingbeautydev.com/blog/javascript-convert-month-number-to-name/#:~:text=To%20convert%20a%20month%20number%20to%20a%20month%20name%2C%20create,a%20specified%20locale%20and%20options.&text=Our%20getMonthName()%20function%20takes,the%20month%20with%20that%20position."
 function getMonthName(monthNumber) {
     const date = new Date();
@@ -149,20 +151,47 @@ function getMonthName(monthNumber) {
 
 // TO DO: If we have extra time we can make the start time not in military time
 function generateSoonestAppt(locationId) {
+    let JSONcontainer
     fetch(`https://ttp.cbp.dhs.gov/schedulerapi/slots?orderBy=soonest&limit=1&locationId=${locationId}&minimum=1`)
     .then(response => response.json())
     .then(appointmentData => {
-        let monthWord
-        appointmentTimeData = appointmentData[0].startTimestamp
-        appointmentDuration = appointmentData[0].duration
-        appointmentStartTime = appointmentTimeData.slice(11)
-        appointmentMonth = appointmentTimeData.substring(5,7)
-        getMonthName(appointmentMonth)
-        appointmentDay = appointmentTimeData.substring(8,10)
-        appointmentYear = appointmentTimeData.substring(0,4)
-        appointmentDate = `${appointmentDay} ${monthWord} ${appointmentYear}`
-        appointmentTimestamp = appointmentData[0].startTimestamp
-        
+        JSONcontainer = appointmentData
+        let cloudApptInfo = document.getElementById("timeAptInfo")
+        let cloudApptInfoAgain = document.getElementById("dateAptInfo")
+        let cloudApptHeader = document.getElementById("appointmentHeader")
+        cloudApptInfoAgain.innerText = ("Would you like to set an alert for this location?")
+        if (JSONcontainer.length != 0){
+            cloudApptHeader.style.display = "block"
+            appointmentTimeData = appointmentData[0].startTimestamp
+            appointmentDuration = appointmentData[0].duration
+            appointmentStartTime = appointmentTimeData.slice(11)
+            appointmentMonth = appointmentTimeData.substring(5,7)
+            getMonthName(appointmentMonth)
+            appointmentDay = appointmentTimeData.substring(8,10)
+            appointmentYear = appointmentTimeData.substring(0,4)
+            appointmentDate = `${appointmentDay} ${monthWord} ${appointmentYear}`
+            appointmentTimestamp = appointmentData[0].startTimestamp
+            cloudApptInfo.innerText = `${appointmentDate} at ${appointmentStartTime}`
+            displayToggleForm()
+        } else {
+            cloudApptHeader.style.display = 'block'
+            cloudApptInfo.innerText = ("No available appointments at this location.")
+            displayToggleForm()
+        }
+    })
+}
+
+function displayToggleForm() {
+    cloudBottomBox.style.display = 'block'
+    let toggleOn = document.querySelector('.btn.btn-default.active.toggle-off')
+    let toggleOff = document.querySelector('.btn.btn-primary.toggle-on')
+    toggleOff.addEventListener('click', function (e) {
+        formInstructions.style.display = 'none'
+        formBox.style.display = 'none'
+    })
+    toggleOn.addEventListener('click', function (e) {
+        formInstructions.style.display = 'block'
+        formBox.style.display = 'block'
     })
 }
 
@@ -173,21 +202,20 @@ function generateApptInRange(locationId){
     .then(appointmentData => {
         JSONcontainer = appointmentData
         console.log(JSONcontainer)
-        let monthWord
+        appointmentTimeData = appointmentData[0].startTimestamp
+        appointmentDuration = appointmentData[0].duration
+        appointmentStartTime = appointmentTimeData.slice(11)
+        appointmentMonth = appointmentTimeData.substring(5,7)
+        getMonthName(appointmentMonth)
+        appointmentDay = appointmentTimeData.substring(8,10)
+        appointmentYear = appointmentTimeData.substring(0,4)
+        appointmentDate = `${appointmentDay} ${monthWord} ${appointmentYear}`
+        appointmentTimestamp = appointmentData[0].startTimestamp
         if (JSONcontainer.length != 0) {
             console.log(JSONcontainer.length)
             alertChime.play()
             alert(`There are ${JSONcontainer.length} appointments that match your search.`)
             window.open('https://ttp.cbp.dhs.gov/schedulerui/schedule-interview/location?lang=en&vo=true')
-            // appointmentTimeData = appointmentData[0].startTimestamp
-            // appointmentDuration = appointmentData[0].duration
-            // appointmentStartTime = appointmentTimeData.slice(11)
-            // appointmentMonth = appointmentTimeData.substring(5,7)
-            // getMonthName(appointmentMonth)
-            // appointmentDay = appointmentTimeData.substring(8,10)
-            // appointmentYear = appointmentTimeData.substring(0,4)
-            // appointmentDate = `${appointmentDay} ${monthWord} ${appointmentYear}`
-            // appointmentTimestamp = appointmentData[0].startTimestamp
         } else {
             alertChime.play()
             alert("There are no appointments yet!")
@@ -198,24 +226,28 @@ function generateApptInRange(locationId){
 // get today's date to populate the default value of the base picker
 
 let today = new Date();
+let todayFuture
 let dd = String(today.getDate()).padStart(2, '0');
 let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
 let yyyy = today.getFullYear();
+let yyyyf = (parseInt(yyyy) + 3)
 
 today = `${yyyy}-${mm}-${dd}`
+todayFuture = `${yyyyf}-${mm}-${dd}`
 
 function datePicker() {
     let startDate = document.getElementById('startDate')
     let endDate = document.getElementById('endDate')
     startDate.value = `${today}`
     startDate.min = `${today}`
-    endDate.value = `${today}`
+    endDate.value = `${todayFuture}`
     endDate.min = `${today}`
     let startDatepicker = document.getElementById('startDate');
     desiredDateStart = startDatepicker.value
     startDatepicker.onchange = e => {
         e.preventDefault();
         desiredDateStart = e.target.value
+        endDate.min = `${startDate.value}`
         console.log(desiredDateStart)
         }  
     let endDatePicker = document.getElementById('endDate');

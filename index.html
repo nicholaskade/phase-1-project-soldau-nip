@@ -122,10 +122,10 @@
                         <div id="locationContainer">
                             <div id="cloudTextBox">
                                 <div id="cloudText">
-                                    <p id="locationName">Fake Fancy Appointment Center</p>
-                                    <p id="locationAddress" class="inset">test apt address</p>
-                                    <p id="locationCityState" class="inset">test apt city state</p>
-                                    <p id="locationPhone" class="inset">test apt phone number</p>
+                                    <p id="locationName"></p>
+                                    <p id="locationAddress" class="inset"></p>
+                                    <p id="locationCityState" class="inset"></p>
+                                    <p id="locationPhone" class="inset"></p>
                                 </div>
                             </div>
                         </div>
@@ -139,26 +139,28 @@
                             <div id="cloudTextBox">
                                 <div id="cloudText">
                                     <p id="appointmentHeader">Next Available Appointment</p>
-                                    <p id="timeAptInfo" class="inset">Time and Stuff</p>
-                                    <p id="dateAptInfo" class="inset">Date and Stuff</p>
-                                    <div id="alertBox">
-                                        <p id="alertApt">Alert:
-                                            <input type="checkbox" data-toggle="toggle" data-on="Set" data-off="No">
-                                            <input type="checkbox" id="toggle-two">
-                                            <p id="formInstructions"><em>
-                                                Select time query increment...
-                                            </p></em>
-                                        </p>
-                                    </div>
-                                    <div id="formBox">
-                                        <form id="alertForm">
-                                            <div class="form-group">
-                                                <input type="number" class="form-control" id="timeQuery" placeholder="sec" min="0" step="5">
-                                            </div>
-                                            <div id="submitAlertBox">
-                                                <button type="submit" class="btn btn-primary">Go</button>
-                                            </div>
-                                        </form>
+                                    <p id="timeAptInfo" class="inset"></p>
+                                    <p id="dateAptInfo" class="inset"></p>
+                                    <div id="cloudBottomBox">
+                                        <div id="alertBox">
+                                            <p id="alertApt">
+                                                <input type="checkbox" data-toggle="toggle" data-on="Yes" data-off="No">
+                                                <input type="checkbox" id="toggle-two">
+                                                <p id="formInstructions"><em>
+                                                    How often should we check?
+                                                </p></em>
+                                            </p>
+                                        </div>
+                                        <div id="formBox">
+                                            <form id="alertForm">
+                                                <div class="form-group">
+                                                    <input type="number" class="form-control" id="timeQuery" placeholder="sec" min="5" max="60" step="5">
+                                                </div>
+                                                <div id="submitAlertBox">
+                                                    <button type="submit" class="btn btn-primary">Go</button>
+                                                </div>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

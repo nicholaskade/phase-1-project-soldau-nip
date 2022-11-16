@@ -258,13 +258,17 @@ input {
 #bottomDropDown {
     display: block;
     position: relative;
-    top: 80px;
+    top: 85px;
 }
 
 #datePicker {
     position: absolute;
     top: 52px;
     left: 100px;
+}
+
+#datePicker label {
+    margin-left: 10px;
 }
 
 #topDatePicker {
@@ -286,7 +290,7 @@ input {
     position: relative;
     justify-content: space-between;
     width: 250px;
-    top: 88px;
+    top: 90px;
 }
 
 #bottomDatePicker input {
@@ -316,8 +320,22 @@ label {
     flex-direction: column;
 }
 
-#locationName, #appointmentHeader {
+#cloudBottomBox {
+    display: flex;
+    position: absolute;
+    top: 180px;
+    flex-direction: column;
+    justify-content: flex-end;
+    display: none;
+}
+
+#locationName {
     font-weight: bold;
+}
+
+#appointmentHeader {
+    font-weight: bold;
+    display: none;
 }
 
 #cloudText p {
@@ -329,11 +347,12 @@ label {
 }
 
 #alertApt {
-    transform: translateX(-20px);
+    transform: translateX(10px);
 }
 
 #formInstructions {
-    transform: translateX(-15px);
+    transform: translateX(20px);
+    display: none;
 }
 
 #alertBox {
@@ -355,6 +374,7 @@ label {
     display: flex;
     justify-content: space-between;
     flex-direction: row;
+    display: none;
 }
 
 .form-group, #submitAlertBox {
