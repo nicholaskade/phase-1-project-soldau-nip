@@ -328,16 +328,39 @@ label {
     margin-left: 20px;
 }
 
+#alertApt {
+    transform: translateX(-20px);
+}
+
+#formInstructions {
+    transform: translateX(-15px);
+}
+
 #alertBox {
     display: flex;
     justify-content: space-between;
     flex-direction: row;
 }
 
+#alertForm {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    position: relative;
+    left: 163px;
+    width: 165px;
+}
+
 #formBox {
     display: flex;
     justify-content: space-between;
-    flex-direction: column;
+    flex-direction: row;
+}
+
+.form-group, #submitAlertBox {
+    display: block;
+    position: relative;
+    width: 80px;
 }
 
 .btn.btn-default.active.toggle-off {

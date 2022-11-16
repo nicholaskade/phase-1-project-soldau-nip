@@ -143,7 +143,7 @@
                                     <p id="dateAptInfo" class="inset">Date and Stuff</p>
                                     <div id="alertBox">
                                         <p id="alertApt">Alert:
-                                            <input type="checkbox" data-toggle="toggle" data-on="On" data-off="Off">
+                                            <input type="checkbox" data-toggle="toggle" data-on="Set" data-off="No">
                                             <input type="checkbox" id="toggle-two">
                                             <p id="formInstructions"><em>
                                                 Select time query increment...
@@ -152,9 +152,12 @@
                                     </div>
                                     <div id="formBox">
                                         <form id="alertForm">
-                                            <label for="fname">Time between queries;</label><br>
-                                            <input type="text" id="fname" name="fname" value="John"><br>
-                                            <input type="submit" value="Submit">       
+                                            <div class="form-group">
+                                                <input type="number" class="form-control" id="timeQuery" placeholder="sec" min="0" step="5">
+                                            </div>
+                                            <div id="submitAlertBox">
+                                                <button type="submit" class="btn btn-primary">Go</button>
+                                            </div>
                                         </form>
                                     </div>
                                 </div>
