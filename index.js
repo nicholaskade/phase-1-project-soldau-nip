@@ -1,3 +1,9 @@
+// TO DO: Clean up code
+// TO DO: Remove extranious console logs
+// STRETCH TO DO: Make date not grey why the hell is that happening
+// STRETCH TO DO: If they have already selected an end date adn they change their start date,
+// run the function to find the nearest appointment and render the info in the cloud 
+
 document.addEventListener("DOMContentLoaded", function() {
     initializeGEAL()
     renderNavBar()
@@ -38,6 +44,7 @@ let locationNames = []
 let locationInfo = []
 let validStates = []
 let stateSorter
+let currentLocationId
 
 const alertChime = new Audio('./assets/alert-chime.mp3')
 
@@ -76,9 +83,6 @@ function renderStates() {
             e.preventDefault()
             stateSorter = e.target.innerText
             let stateButtonText = document.getElementById('state-menu')
-            // I THINK WE SHOULD CONSIDER THE DROP DOWN NOT HAVING THE STATE
-            // AS THE DISPLAY TEXT BECAUSE IT MAKES IT SO THE LOCATION IS MUCH TOO LONG
-            // MAYBE WE CAN DISPLAY IT UNDERNEITH INSTEAD
             stateButtonText.innerText = stateSorter
             renderLocations(stateSorter)        
         })
@@ -100,7 +104,7 @@ function renderLocations(stateSorter) {
             const stringName = `${location}`
             generateOptions.id = stringName.substring(4)
             const nameNoAbbreviation = stringName.substring(4)
-        // grab the state abbrevs. and make them the IDs of each location so we can filter with them
+            // grab the state abbrevs. and make them the IDs of each location so we can filter with them
             locationSelector.appendChild(generateOptions)
             generateOptions.addEventListener('click', (e) =>{
                 e.preventDefault()
@@ -118,6 +122,9 @@ function renderLocationInfo(locationInput){
     let cityStatePlaceholder = document.getElementById('locationCityState')
     locationInfo.forEach((location) => {
         if (location.name === locationInput) {
+            console.log(location)
+            currentLocationId = location.locationId
+            console.log(currentLocationId)
             addyPlaceholder.innerText = location.address
             namePlaceholder.innerText = location.name
             phonePlaceholder.innerText = location.phoneNumber
@@ -142,6 +149,10 @@ let appointmentTimestamp
 
 let monthWord
 
+let cloudApptInfo
+let cloudApptInfoAgain
+let cloudApptHeader
+
 // converts the month in number to the month word src="https://codingbeautydev.com/blog/javascript-convert-month-number-to-name/#:~:text=To%20convert%20a%20month%20number%20to%20a%20month%20name%2C%20create,a%20specified%20locale%20and%20options.&text=Our%20getMonthName()%20function%20takes,the%20month%20with%20that%20position."
 function getMonthName(monthNumber) {
     const date = new Date();
@@ -151,14 +162,13 @@ function getMonthName(monthNumber) {
 
 // TO DO: If we have extra time we can make the start time not in military time
 function generateSoonestAppt(locationId) {
-    let JSONcontainer
     fetch(`https://ttp.cbp.dhs.gov/schedulerapi/slots?orderBy=soonest&limit=1&locationId=${locationId}&minimum=1`)
     .then(response => response.json())
     .then(appointmentData => {
         JSONcontainer = appointmentData
-        let cloudApptInfo = document.getElementById("timeAptInfo")
-        let cloudApptInfoAgain = document.getElementById("dateAptInfo")
-        let cloudApptHeader = document.getElementById("appointmentHeader")
+        cloudApptInfo = document.getElementById("timeAptInfo")
+        cloudApptInfoAgain = document.getElementById("dateAptInfo")
+        cloudApptHeader = document.getElementById("appointmentHeader")
         cloudApptInfoAgain.innerText = ("Would you like to set an alert for this location?")
         if (JSONcontainer.length != 0){
             cloudApptHeader.style.display = "block"
@@ -195,29 +205,35 @@ function displayToggleForm() {
     })
 }
 
-function generateApptInRange(locationId){
-    let JSONcontainer
-    fetch(`https://ttp.cbp.dhs.gov/schedulerapi/locations/${locationId}/slots?startTimestamp=${desiredDateStart}T00%3A00%3A00&endTimestamp=${desiredDateEnd}T00%3A00%3A00`)
+let JSONcontainer
+
+function generateApptInRange(){
+    fetch(`https://ttp.cbp.dhs.gov/schedulerapi/locations/${currentLocationId}/slots?startTimestamp=${desiredDateStart}T00%3A00%3A00&endTimestamp=${desiredDateEnd}T00%3A00%3A00`)
     .then(response => response.json())
     .then(appointmentData => {
         JSONcontainer = appointmentData
-        console.log(JSONcontainer)
-        appointmentTimeData = appointmentData[0].startTimestamp
+        appointmentTimeData = appointmentData[0].timestamp
+        console.log(`time data: ${appointmentTimeData}`)
         appointmentDuration = appointmentData[0].duration
+        console.log(`apt duration: ${appointmentDuration}`)
         appointmentStartTime = appointmentTimeData.slice(11)
+        console.log(`start time: ${appointmentStartTime}`)
         appointmentMonth = appointmentTimeData.substring(5,7)
+        console.log(`apt month: ${appointmentMonth}`)
         getMonthName(appointmentMonth)
         appointmentDay = appointmentTimeData.substring(8,10)
         appointmentYear = appointmentTimeData.substring(0,4)
         appointmentDate = `${appointmentDay} ${monthWord} ${appointmentYear}`
-        appointmentTimestamp = appointmentData[0].startTimestamp
+        console.log(`apt date: ${appointmentDate}`)
+        appointmentTimestamp = appointmentData[0].timestamp
+        console.log(`apt time stamp: ${appointmentTimestamp}`)
         if (JSONcontainer.length != 0) {
             console.log(JSONcontainer.length)
             alertChime.play()
-            alert(`There are ${JSONcontainer.length} appointments that match your search.`)
-            window.open('https://ttp.cbp.dhs.gov/schedulerui/schedule-interview/location?lang=en&vo=true')
+            // alert(`There are ${JSONcontainer.length} appointments that match your search.`)
+            // window.open('https://ttp.cbp.dhs.gov/schedulerui/schedule-interview/location?lang=en&vo=true')
+            cloudApptInfo.innerText = `${appointmentDate} at ${appointmentStartTime}`
         } else {
-            alertChime.play()
             alert("There are no appointments yet!")
         }
     })
@@ -235,26 +251,31 @@ let yyyyf = (parseInt(yyyy) + 3)
 today = `${yyyy}-${mm}-${dd}`
 todayFuture = `${yyyyf}-${mm}-${dd}`
 
+let endDate
+let startDate
+
 function datePicker() {
-    let startDate = document.getElementById('startDate')
-    let endDate = document.getElementById('endDate')
+    startDate = document.getElementById('startDate')
+    endDate = document.getElementById('endDate')
     startDate.value = `${today}`
     startDate.min = `${today}`
-    endDate.value = `${todayFuture}`
+    endDate.value = ``
     endDate.min = `${today}`
     let startDatepicker = document.getElementById('startDate');
-    desiredDateStart = startDatepicker.value
+    desiredDateStart = `${today}`
     startDatepicker.onchange = e => {
-        e.preventDefault();
+        e.preventDefault()
         desiredDateStart = e.target.value
         endDate.min = `${startDate.value}`
-        console.log(desiredDateStart)
-        }  
+        }
     let endDatePicker = document.getElementById('endDate');
     desiredDateEnd = endDatePicker.value
     endDatePicker.onchange = e => {
-        e.preventDefault();
+        e.preventDefault()
         desiredDateEnd = e.target.value
         console.log(desiredDateEnd)
-        }
+        startDate.max = `${desiredDateEnd}`
+        // generateApptInRange(currentLocationId)
+        generateApptInRange()
     }
+}
