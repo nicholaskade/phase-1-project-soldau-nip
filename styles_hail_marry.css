@@ -12,16 +12,18 @@ body {
 #daddyFlexBody {
     display: flex;
     flex-direction: column;
+    margin: 0px;
 }
 
 #headerFlexBox{
     display: flex;
     flex-direction: row;
-    justify-content: center;
     align-items: center;
+
 }
 #logoFlexBox {
     display: flex;
+    vertical-align: top;
 }
 
 #headerCollapsableButtonBox {
@@ -136,7 +138,7 @@ i {
 
 
 input {
-    -webkit-appearance: none; /*might need -webkit-appearance */
+    -webkit-appearance: none; 
     display: none;
 }
 
@@ -162,15 +164,17 @@ input {
 }
 
 .logo {
-    width: 15vh;
-    margin: 10%;
+    width: 150px;
+    margin-left: 15px;
+    margin-top: 15px;
     height: auto;
+    vertical-align: top;
 }
 
 #row1FlexBox, #row2FlexBox {
     display: flex;
     flex-direction: row;
-    margin: 2%;
+    margin: 10px;
     justify-content: space-between;
 }
 
@@ -192,6 +196,8 @@ input {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    width: 245px;
+    text-align: left;
 }
 
 #row1Space {
@@ -208,24 +214,22 @@ input {
     display: flex;
 }
 
+/* TO DO: USE PX INSTEAD OF VH/VW!!  */
 #tagImage {
     width: auto;
-    height: 30vh;
+    height: 250px;
     z-index: 3;
     display: inline-block;
     position: relative;
 }
 
 #cloudImage {
-    height: 35vh;
+    height: 300px;
+    width: 450px;
     z-index: 1;
     display: inline-block;
     position: relative;
 }
-
-/* TO DO: DROP DOWN CONTAINERS SHIFT WHEN YOU CHANGE SCREEN HEIGHT
-WHAT IF INSTEAD OF TRYING TO LAY THEM IN THE PREMADE WHITE TAGS
-WE MAKE THE OUTLINE ON THE DIV ITSELF TO AVOID ALIGNMENT ISSUES? */
 
 #dropDownContainer, #dateContainer {
     position: absolute;
@@ -237,56 +241,74 @@ WE MAKE THE OUTLINE ON THE DIV ITSELF TO AVOID ALIGNMENT ISSUES? */
     z-index: 2;
 }
 
+/* TO DO: CHANGE TO ABSOLUTE AND F WITH LOCATION SO IT WORKS */
 #buttonsContainer {
     display: block;
-    position: relative;
+    position: absolute;
+    left: 105px;
+    top: 45px;
 }
 
 #topDropDown {
     display: block;
     position: relative;
-    top: 5.5vh;
-    left: 115px;
 }
 
 #bottomDropDown {
     display: block;
     position: relative;
-    top: 15.5vh;
-    left: 115px;
+    top: 80px;
+}
+
+#datePicker {
+    position: absolute;
+    top: 52px;
+    left: 100px;
 }
 
 #topDatePicker {
-    display: block;
+    display: flex;
     position: relative;
-    top: 6vh;
-    left: 115px;
+    justify-content: space-between;
+    width: 250px;
+    vertical-align: center;
 }
 
 #topDatePicker input {
-    border-radius: 1vh;
+    border-radius: 1px;
     background-color: #3c7679;
     color: white;
 }
 
 #bottomDatePicker {
-    display: block;
+    display: flex;
     position: relative;
-    top: 16.25vh;
-    left: 115px;
+    justify-content: space-between;
+    width: 250px;
+    top: 88px;
 }
 
 #bottomDatePicker input {
-    border-radius: 1vh;
+    border-radius: 1px;
     background-color: #3c7679;
     color: white;
 }
 
-#cloudTextBox {
+#startDate, #endDate {
     display: flex;
-    margin-left: 49px;
-    padding-right: 90px;
-    margin-top: 9vh;
+    z-index: 4;
+}
+
+label {
+    margin-bottom: 0px !important;
+    font-size: 1.1rem;
+}
+
+#cloudTextBox {
+    display: relative;
+    margin-left: 50px;
+    padding-right: 95px;
+    margin-top: 90px;
 }
 
 #cloudText {
@@ -294,7 +316,7 @@ WE MAKE THE OUTLINE ON THE DIV ITSELF TO AVOID ALIGNMENT ISSUES? */
     flex-direction: column;
 }
 
-#locationName {
+#locationName, #appointmentHeader {
     font-weight: bold;
 }
 
@@ -315,5 +337,5 @@ WE MAKE THE OUTLINE ON THE DIV ITSELF TO AVOID ALIGNMENT ISSUES? */
     position: absolute;
     bottom: 0px;
     font-family: "Georgia";
-    font-size: 1.25vw;
+    font-size: .75rem;
 }

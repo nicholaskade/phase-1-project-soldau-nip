@@ -16,13 +16,11 @@ function renderNavBar() {
     let bar3 = document.querySelector(".bar3")
 
     bar1.addEventListener("click", function() {
-        console.log(`clicked 1`)
         let data1 = document.querySelector(".data1")
         data1.classList.toggle('show')
     })
 
     bar2.addEventListener("click", function() {
-        console.log(`clicked 2`)
         let data2 = document.querySelector(".data2")
         data2.classList.toggle('show')
     })
@@ -30,7 +28,6 @@ function renderNavBar() {
     bar3.addEventListener("click", function() {
         let data3 = document.querySelector(".data3")
         data3.classList.toggle('show')
-        console.log(`clicked 3`)
     })
 }
 
