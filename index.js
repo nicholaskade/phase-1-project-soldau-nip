@@ -317,5 +317,6 @@ function datePicker() {
         generateApptInRange()
         endDatePicker.value = ``
         startDatepicker.value = `${today}` 
+        endDate.value = desiredDateEnd
     }
 }
