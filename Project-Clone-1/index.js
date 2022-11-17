@@ -1,8 +1,6 @@
 // TO DO: Clean up code
 // TO DO: Remove extranious console logs
 // STRETCH TO DO: Make date not grey why the hell is that happening
-// STRETCH TO DO: If they have already selected an end date adn they change their start date,
-// run the function to find the nearest appointment and render the info in the cloud 
 
 document.addEventListener("DOMContentLoaded", function() {
     initializeGEAL()
@@ -85,8 +83,7 @@ function renderStates() {
             stateSorter = e.target.innerText
             let stateButtonText = document.getElementById('state-menu')
             stateButtonText.innerText = stateSorter
-            renderLocations(stateSorter)
-            console.log(stateButtonText)       
+            renderLocations(stateSorter)        
         })
         stateSelector.appendChild(generateOptions)
     })
@@ -94,44 +91,28 @@ function renderStates() {
 
 let nameNoAbbreviation
 
-
-
 function renderLocations(stateSorter) {
     const locationSelector = document.getElementById('location-selector')
-    console.log(`State Sorter: ${stateSorter}`)
     while (locationSelector.firstChild) {
         locationSelector.removeChild(locationSelector.firstChild)
     }
     locationNames.sort()
-    // let validLocations = locationNames.filter(location => (`${location[0] + location[1]}`) === stateSorter)
-    // console.log(typeof validLocations, `Valid Locations: ${[validLocations]}`)
-    let validLocations = []
-    locationNames.forEach(stateValidator)
-    function stateValidator(location){
-        if ((`${location[0] + location[1]}`) === stateSorter){
-            validLocations.unshift(location)
+    locationNames.forEach((location) => {
+        if ((`${location[0] + location[1]}`) === stateSorter) {
+            const generateOptions = document.createElement('button')
+            generateOptions.innerText = location
+            generateOptions.className = "dropdown-item"
+            const stringName = `${location}`
+            generateOptions.id = stringName.substring(4)
+            nameNoAbbreviation = stringName.substring(4)
+            // grab the state abbrevs. and make them the IDs of each location so we can filter with them
+            locationSelector.appendChild(generateOptions)
+            generateOptions.addEventListener('click', (e) =>{
+                e.preventDefault()
+                renderLocationInfo(nameNoAbbreviation)     
+            })
         }
-    }
-    // console.log(`Valid Locations ${validLocations}`)
-    validLocations.forEach(renderLocationDropdown)
-    function renderLocationDropdown(location){
-        console.log(`Location: ${location}`)
-        const generateOptions = document.createElement('button')
-        generateOptions.innerText = location
-        generateOptions.className = "dropdown-item"
-        const stringName = `${location}`
-        generateOptions.id = location.locationId
-        console.log(`Id: ${generateOptions.id}`)
-        nameNoAbbreviation = stringName.substring(4)
-        console.log(`Name: ${nameNoAbbreviation}`)
-        console.log(generateOptions)
-        // grab the state abbrevs. and make them the IDs of each location so we can filter with them
-        locationSelector.appendChild(generateOptions)
-        generateOptions.addEventListener('click', (e) =>{
-            e.preventDefault()
-            renderLocationInfo(nameNoAbbreviation)     
-        })
-    }
+    })
 }
 
 function renderLocationInfo(locationInput){
@@ -142,9 +123,9 @@ function renderLocationInfo(locationInput){
     let cityStatePlaceholder = document.getElementById('locationCityState')
     locationInfo.forEach((location) => {
         if (location.name === locationInput) {
-            // console.log(location)
+            console.log(location)
             currentLocationId = location.locationId
-            // console.log(currentLocationId)
+            console.log(currentLocationId)
             addyPlaceholder.innerText = location.address
             namePlaceholder.innerText = location.name
             phonePlaceholder.innerText = location.phoneNumber
@@ -192,7 +173,6 @@ function generateSoonestAppt(locationId) {
         cloudApptHeader = document.getElementById("appointmentHeader")
         cloudApptInfoAgain.innerText = ("Would you like to set an alert for this location?")
         if (JSONcontainer.length != 0){
-            console.log(JSONcontainer)
             cloudApptHeader.style.display = "block"
             appointmentTimeData = appointmentData[0].startTimestamp
             appointmentDuration = appointmentData[0].duration
@@ -214,7 +194,7 @@ function generateSoonestAppt(locationId) {
 }
 
 function createAlertListener() {
-    // console.log("I was invoked!")
+    console.log("I was invoked!")
     let alertForm = document.getElementById('alertForm')
     alertForm.addEventListener('submit', function (e) {
         e.preventDefault()
