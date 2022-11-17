@@ -1,0 +1,292 @@
+{
+  "validLocations": [
+    {
+      "locationName": "Hidalgo Enrollment Center",
+      "locationId": 5001,
+      "address": "Anzalduas International Bridge",
+      "city": "Mission",
+      "state": "TX",
+      "phoneNumber": "9562057929",
+      "id": 1
+    },
+    {
+      "locationName": "San Diego -Otay Mesa Enrollment Center",
+      "locationId": 5002,
+      "address": "9725 Via De La Amistad",
+      "city": "San Diego",
+      "state": "CA",
+      "phoneNumber": "6196907600",
+      "id": 2
+    },
+    {
+      "locationName": "Brownsville Enrollment Center",
+      "locationId": 5003,
+      "address": "700 Amelia Earhart Dr, Brownsville, Texas",
+      "city": "Brownsville",
+      "state": "TX",
+      "phoneNumber": "9569835668",
+      "id": 3
+    },
+    {
+      "locationName": "Champlain Enrollment Center",
+      "locationId": 5021,
+      "address": "237 West Service Road",
+      "city": "Champlain",
+      "state": "NY",
+      "phoneNumber": "5182987950",
+      "id": 4
+    },
+    {
+      "locationName": "Nogales, AZ",
+      "locationId": 5007,
+      "address": "200 N. MARIPOSA RD STE. B700",
+      "city": "NOGALES",
+      "state": "AZ",
+      "phoneNumber": "5203972184",
+      "id": 5
+    },
+    {
+      "locationName": "Laredo Enrollment Center",
+      "locationId": 5004,
+      "address": "400 San Edwardo",
+      "city": "Laredo",
+      "state": "TX",
+      "phoneNumber": "9565237399",
+      "id": 6
+    },
+    {
+      "locationName": "Calexico Enrollment Center",
+      "locationId": 5006,
+      "address": "1699 East Carr Road",
+      "city": "Calexico",
+      "state": "CA",
+      "phoneNumber": "7607682406",
+      "id": 7
+    },
+    {
+      "locationName": "Detroit Enrollment Center Global Entry",
+      "locationId": 5023,
+      "address": "2810 W. Fort Street Suite 124",
+      "city": "Detroit",
+      "state": "MI",
+      "phoneNumber": "3139647973",
+      "id": 8
+    },
+    {
+      "locationName": "Port Huron Enrollment Center",
+      "locationId": 5024,
+      "address": "2321 Pine Grove Avenue",
+      "city": "Port Huron",
+      "state": "MI",
+      "phoneNumber": "8109898831",
+      "id": 9
+    },
+    {
+      "locationName": "El Paso Enrollment Center",
+      "locationId": 5005,
+      "address": "797 S. Zaragoza Rd. Bldg.  A",
+      "city": "El Paso",
+      "state": "TX",
+      "phoneNumber": "9158723472",
+      "id": 10
+    },
+    {
+      "locationName": "Warroad Enrollment Center ",
+      "locationId": 5060,
+      "address": "41059 Warroad Enrollment Center",
+      "city": "Warroad",
+      "state": "MN",
+      "phoneNumber": "2183862796",
+      "id": 11
+    },
+    {
+      "locationName": "Sault Ste Marie Enrollment Center",
+      "locationId": 5080,
+      "address": "900 International Bridge Plaza",
+      "city": "Sault Ste. Marie",
+      "state": "MI",
+      "phoneNumber": "9066323837",
+      "id": 12
+    },
+    {
+      "locationName": "Sweetgrass NEXUS and FAST Enrollment Center",
+      "locationId": 5120,
+      "address": " Nexus Enrollment Center",
+      "city": "Sweetgrass",
+      "state": "MT",
+      "phoneNumber": "4063359610",
+      "id": 13
+    },
+    {
+      "locationName": "JFK International Global Entry EC",
+      "locationId": 5140,
+      "address": "JFK International Airport",
+      "city": "Jamaica",
+      "state": "NY",
+      "phoneNumber": "7185531237",
+      "id": 14
+    },
+    {
+      "locationName": "Houston Intercontinental Global Entry EC",
+      "locationId": 5141,
+      "address": "3870 North Terminal Road",
+      "city": "Houston",
+      "state": "TX",
+      "phoneNumber": "2812304740",
+      "id": 15
+    },
+    {
+      "locationName": "Washington Dulles International Global Entry EC",
+      "locationId": 5142,
+      "address": "22685 International Arrivals- Main Terminal",
+      "city": "Sterling ",
+      "state": "VA",
+      "phoneNumber": "7036612854",
+      "id": 16
+    },
+    {
+      "locationName": "Niagara Falls Enrollment Center",
+      "locationId": 5161,
+      "address": "2250 WHIRLPOOL ST.",
+      "city": "NIAGARA FALLS",
+      "state": "NY",
+      "phoneNumber": "7162824663",
+      "id": 17
+    },
+    {
+      "locationName": "Los Angeles International Global Entry EC",
+      "locationId": 5180,
+      "address": "11099 S LA CIENEGA BLVD",
+      "city": "LOS ANGELES",
+      "state": "CA",
+      "phoneNumber": "3106421428",
+      "id": 18
+    },
+    {
+      "locationName": "Miami International Airport",
+      "locationId": 5181,
+      "address": "21 Miad Circle",
+      "city": "Miami",
+      "state": "FL",
+      "phoneNumber": "7863693710",
+      "id": 19
+    },
+    {
+      "locationName": "Atlanta International Global Entry EC",
+      "locationId": 5182,
+      "address": "2600 Maynard H. Jackson Jr. Int'l Terminal",
+      "city": "Atlanta",
+      "state": "GA",
+      "phoneNumber": "4047652302",
+      "id": 20
+    },
+    {
+      "locationName": "Chicago O'Hare International Global Entry EC ",
+      "locationId": 5183,
+      "address": "10000 West O'Hare Drive",
+      "city": "CHICAGO",
+      "state": "IL",
+      "phoneNumber": "7736862800",
+      "id": 21
+    },
+    {
+      "locationName": "Derby Line Enrollment Center",
+      "locationId": 5223,
+      "address": "107 I-91 South",
+      "city": "Derby Line",
+      "state": "VT",
+      "phoneNumber": "8028733489",
+      "id": 22
+    },
+    {
+      "locationName": "Dallas-Fort Worth International Airport Global Entry",
+      "locationId": 5300,
+      "address": "DFW International Airport - Terminal D",
+      "city": "DFW Airport",
+      "state": "TX",
+      "phoneNumber": "9724562367",
+      "id": 23
+    },
+    {
+      "locationName": "Detroit Metro Airport",
+      "locationId": 5320,
+      "address": " Detroit Evans Terminal",
+      "city": "Detroit",
+      "state": "MI",
+      "phoneNumber": "7349417668",
+      "id": 24
+    },
+    {
+      "locationName": "Honolulu Enrollment Center",
+      "locationId": 5340,
+      "address": "300 Rodgers Blvd",
+      "city": "Honolulu",
+      "state": "HI",
+      "phoneNumber": "8086285074",
+      "id": 25
+    },
+    {
+      "locationName": "Las Vegas Enrollment Center",
+      "locationId": 5360,
+      "address": "5757 Wayne Newton Blvd Terminal 3",
+      "city": "Las Vegas",
+      "state": "NV",
+      "phoneNumber": "7027306072",
+      "id": 26
+    },
+    {
+      "locationName": "Orlando International Airport",
+      "locationId": 5380,
+      "address": "1 Jeff Fuqua Blvd",
+      "city": "Orlando",
+      "state": "FL",
+      "phoneNumber": "4078254366",
+      "id": 27
+    },
+    {
+      "locationName": "San Juan Global Entry Enrollment Center",
+      "locationId": 5400,
+      "address": "Luis Muñoz Marin International Airport (SJU)",
+      "city": "Carolina",
+      "state": "PR",
+      "phoneNumber": "7872537247",
+      "id": 28
+    },
+    {
+      "locationName": "Seatac International Airport Global Entry EC",
+      "locationId": 5420,
+      "address": "17801 International Blvd, SeaTac, WA 98158",
+      "city": "SeaTac",
+      "state": "WA",
+      "phoneNumber": "2062144961",
+      "id": 29
+    },
+    {
+      "locationName": "Boston-Logan Global Entry Enrollment Center",
+      "locationId": 5441,
+      "address": "Logan International Airport, Terminal E",
+      "city": "East Boston",
+      "state": "MA",
+      "phoneNumber": "6175681810",
+      "id": 30
+    },
+    {
+      "locationName": "Fort Lauderdale Global Entry Enrollment Center",
+      "locationId": 5443,
+      "address": "1800 Eller Drive",
+      "city": "Ft Lauderdale",
+      "state": "FL",
+      "phoneNumber": "9547612029",
+      "id": 31
+    },
+    {
+      "locationName": "Newark Liberty Intl Airport",
+      "locationId": 5444,
+      "address": "Newark Liberty International Airport",
+      "city": "Newark ",
+      "state": "NJ",
+      "phoneNumber": "9735658000",
+      "id": 32
+    }
+  ]
+}
