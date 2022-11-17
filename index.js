@@ -69,7 +69,6 @@ function pullData(locationData){
     validStates.sort()
     renderStates()
     renderLocations()
-    console.log(locationInfo)
 }
 
 function renderStates() {
@@ -109,7 +108,6 @@ function renderLocations(stateSorter) {
             locationSelector.appendChild(generateOptions)
             generateOptions.addEventListener('click', (e) =>{
                 e.preventDefault()
-                console.log(`Location Names: ${nameNoAbbreviation}`)
                 renderLocationInfo(nameNoAbbreviation)
             })
         }
@@ -117,7 +115,6 @@ function renderLocations(stateSorter) {
 }
 
 function renderLocationInfo(locationInput){
-    console.log(`Name No Abbreviation: ${locationInput}`)
     let addyPlaceholder = document.getElementById('locationAddress')
     let namePlaceholder = document.getElementById('locationName')
     let phonePlaceholder = document.getElementById('locationPhone')
@@ -125,9 +122,7 @@ function renderLocationInfo(locationInput){
     let cityStatePlaceholder = document.getElementById('locationCityState')
     locationInfo.forEach((location) => {
         if (location.name === locationInput) {
-            console.log(location)
             currentLocationId = location.locationId
-            console.log(currentLocationId)
             addyPlaceholder.innerText = location.address
             namePlaceholder.innerText = location.name
             phonePlaceholder.innerText = location.phoneNumber
@@ -198,7 +193,6 @@ function generateSoonestAppt(locationId) {
 let milliseconds
 
 function createAlertListener() {
-    console.log("I was invoked!")
     let alertField = document.getElementById('timeQuery')
     let alertForm = document.getElementById('alertForm')
     alertForm.addEventListener('submit', function (e) {
@@ -228,8 +222,6 @@ function setAnAlert() {
                 alertChime.play()
                 alertMe()
             } else {
-                console.log(validAppointment);
-                console.log(JSONcontainer)
                 console.log("Searching for an appointment...")
                 setTimeout(setAnAlert, milliseconds)
             }
@@ -273,7 +265,6 @@ function generateApptInRange(){
         validAppointment = appointmentData.find((appointmentSlot) => appointmentSlot.active === 1 && (Date.parse(appointmentSlot.timestamp) >= Date.now()))
             if (validAppointment !== undefined) {
                 JSONcontainer.unshift(validAppointment)
-                console.log(JSONcontainer)
                 appointmentTimeData = validAppointment.timestamp
                 appointmentDuration = validAppointment.duration
                 appointmentStartTime = appointmentTimeData.slice(11)
@@ -283,7 +274,6 @@ function generateApptInRange(){
                 appointmentYear = appointmentTimeData.substring(0,4)
                 appointmentDate = `${appointmentDay} ${monthWord} ${appointmentYear}`
                 appointmentTimestamp = validAppointment.timestamp
-                console.log(JSONcontainer.length)
                 cloudApptInfo.innerText = `${appointmentDate} at ${appointmentStartTime}`
             } else {
                 alert("There are no appointments in this range yet! Set up an alert for this location.")
@@ -311,7 +301,6 @@ function datePicker() {
     endDatePicker.onchange = e => {
         e.preventDefault()
         desiredDateEnd = e.target.value
-        console.log(desiredDateEnd)
         startDate.max = `${desiredDateEnd}`
         // generateApptInRange(currentLocationId)
         generateApptInRange()
