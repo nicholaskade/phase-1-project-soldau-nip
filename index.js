@@ -1,12 +1,11 @@
 // TO DO: Clean up code
 // TO DO: Remove extranious console logs
 // STRETCH TO DO: Make date not grey why the hell is that happening
-// STRETCH TO DO: If they have already selected an end date adn they change their start date,
-// run the function to find the nearest appointment and render the info in the cloud 
 
 document.addEventListener("DOMContentLoaded", function() {
     initializeGEAL()
     renderNavBar()
+    createAlertListener()
 })
 
 function renderNavBar() {
@@ -25,7 +24,7 @@ function renderNavBar() {
         data2.classList.toggle('show')
     })
 
-    bar3.addEventListener("click", function() {
+    bar3.addEventListener("click", function() { 
         let data3 = document.querySelector(".data3")
         data3.classList.toggle('show')
     })
@@ -70,6 +69,7 @@ function pullData(locationData){
     validStates.sort()
     renderStates()
     renderLocations()
+    console.log(locationInfo)
 }
 
 function renderStates() {
@@ -99,22 +99,25 @@ function renderLocations(stateSorter) {
     locationNames.forEach((location) => {
         if ((`${location[0] + location[1]}`) === stateSorter) {
             const generateOptions = document.createElement('button')
+            let nameNoAbbreviation
             generateOptions.innerText = location
             generateOptions.className = "dropdown-item"
             const stringName = `${location}`
             generateOptions.id = stringName.substring(4)
-            const nameNoAbbreviation = stringName.substring(4)
+            nameNoAbbreviation = stringName.substring(4)
             // grab the state abbrevs. and make them the IDs of each location so we can filter with them
             locationSelector.appendChild(generateOptions)
             generateOptions.addEventListener('click', (e) =>{
                 e.preventDefault()
-                renderLocationInfo(nameNoAbbreviation)     
+                console.log(`Location Names: ${nameNoAbbreviation}`)
+                renderLocationInfo(nameNoAbbreviation)
             })
         }
     })
 }
 
 function renderLocationInfo(locationInput){
+    console.log(`Name No Abbreviation: ${locationInput}`)
     let addyPlaceholder = document.getElementById('locationAddress')
     let namePlaceholder = document.getElementById('locationName')
     let phonePlaceholder = document.getElementById('locationPhone')
@@ -162,6 +165,7 @@ function getMonthName(monthNumber) {
 
 // TO DO: If we have extra time we can make the start time not in military time
 function generateSoonestAppt(locationId) {
+    let JSONcontainer
     fetch(`https://ttp.cbp.dhs.gov/schedulerapi/slots?orderBy=soonest&limit=1&locationId=${locationId}&minimum=1`)
     .then(response => response.json())
     .then(appointmentData => {
@@ -191,6 +195,47 @@ function generateSoonestAppt(locationId) {
     })
 }
 
+let milliseconds
+
+function createAlertListener() {
+    console.log("I was invoked!")
+    let alertField = document.getElementById('timeQuery')
+    let alertForm = document.getElementById('alertForm')
+    alertForm.addEventListener('submit', function (e) {
+        e.preventDefault()
+    })
+    let alerterButton = document.getElementById('submit-button')
+    alerterButton.addEventListener('click', function (e) {
+        milliseconds = (parseInt(alertField.value * 1000))
+        setAnAlert()
+        
+    })
+}
+
+function alertMe() {
+    alert(`An appointment has become available.`)
+    window.open('https://ttp.cbp.dhs.gov/schedulerui/schedule-interview/location?lang=en&vo=true')
+}
+
+function setAnAlert() {
+    let JSONcontainer = []
+    fetch(`https://ttp.cbp.dhs.gov/schedulerapi/locations/${currentLocationId}/slots?startTimestamp=${desiredDateStart}T00%3A00%3A00&endTimestamp=${desiredDateEnd}T00%3A00%3A00`)
+    .then(response => response.json())
+    .then(appointmentData => {
+        let validAppointment = appointmentData.find((appointmentSlot) => appointmentSlot.active === 1 && (Date.parse(appointmentSlot.timestamp) >= Date.now()))
+            if (validAppointment !== undefined) {
+                JSONcontainer.unshift(validAppointment)
+                alertChime.play()
+                alertMe()
+            } else {
+                console.log(validAppointment);
+                console.log(JSONcontainer)
+                console.log("Searching for an appointment...")
+                setTimeout(setAnAlert, milliseconds)
+            }
+    }) 
+}
+
 function displayToggleForm() {
     cloudBottomBox.style.display = 'block'
     let toggleOn = document.querySelector('.btn.btn-default.active.toggle-off')
@@ -198,48 +243,13 @@ function displayToggleForm() {
     toggleOff.addEventListener('click', function (e) {
         formInstructions.style.display = 'none'
         formBox.style.display = 'none'
+        location.reload(true)
     })
     toggleOn.addEventListener('click', function (e) {
         formInstructions.style.display = 'block'
         formBox.style.display = 'block'
     })
 }
-
-let JSONcontainer
-
-function generateApptInRange(){
-    fetch(`https://ttp.cbp.dhs.gov/schedulerapi/locations/${currentLocationId}/slots?startTimestamp=${desiredDateStart}T00%3A00%3A00&endTimestamp=${desiredDateEnd}T00%3A00%3A00`)
-    .then(response => response.json())
-    .then(appointmentData => {
-        JSONcontainer = appointmentData
-        appointmentTimeData = appointmentData[0].timestamp
-        console.log(`time data: ${appointmentTimeData}`)
-        appointmentDuration = appointmentData[0].duration
-        console.log(`apt duration: ${appointmentDuration}`)
-        appointmentStartTime = appointmentTimeData.slice(11)
-        console.log(`start time: ${appointmentStartTime}`)
-        appointmentMonth = appointmentTimeData.substring(5,7)
-        console.log(`apt month: ${appointmentMonth}`)
-        getMonthName(appointmentMonth)
-        appointmentDay = appointmentTimeData.substring(8,10)
-        appointmentYear = appointmentTimeData.substring(0,4)
-        appointmentDate = `${appointmentDay} ${monthWord} ${appointmentYear}`
-        console.log(`apt date: ${appointmentDate}`)
-        appointmentTimestamp = appointmentData[0].timestamp
-        console.log(`apt time stamp: ${appointmentTimestamp}`)
-        if (JSONcontainer.length != 0) {
-            console.log(JSONcontainer.length)
-            alertChime.play()
-            // alert(`There are ${JSONcontainer.length} appointments that match your search.`)
-            // window.open('https://ttp.cbp.dhs.gov/schedulerui/schedule-interview/location?lang=en&vo=true')
-            cloudApptInfo.innerText = `${appointmentDate} at ${appointmentStartTime}`
-        } else {
-            alert("There are no appointments yet!")
-        }
-    })
-}
-
-// get today's date to populate the default value of the base picker
 
 let today = new Date();
 let todayFuture
@@ -253,6 +263,34 @@ todayFuture = `${yyyyf}-${mm}-${dd}`
 
 let endDate
 let startDate
+
+function generateApptInRange(){
+    let JSONcontainer = []
+    let validAppointment
+    fetch(`https://ttp.cbp.dhs.gov/schedulerapi/locations/${currentLocationId}/slots?startTimestamp=${desiredDateStart}T00%3A00%3A00&endTimestamp=${desiredDateEnd}T00%3A00%3A00`)
+    .then(response => response.json())
+    .then(appointmentData => {
+        validAppointment = appointmentData.find((appointmentSlot) => appointmentSlot.active === 1 && (Date.parse(appointmentSlot.timestamp) >= Date.now()))
+            if (validAppointment !== undefined) {
+                JSONcontainer.unshift(validAppointment)
+                console.log(JSONcontainer)
+                appointmentTimeData = validAppointment.timestamp
+                appointmentDuration = validAppointment.duration
+                appointmentStartTime = appointmentTimeData.slice(11)
+                appointmentMonth = appointmentTimeData.substring(5,7)
+                getMonthName(appointmentMonth)
+                appointmentDay = appointmentTimeData.substring(8,10)
+                appointmentYear = appointmentTimeData.substring(0,4)
+                appointmentDate = `${appointmentDay} ${monthWord} ${appointmentYear}`
+                appointmentTimestamp = validAppointment.timestamp
+                console.log(JSONcontainer.length)
+                cloudApptInfo.innerText = `${appointmentDate} at ${appointmentStartTime}`
+            } else {
+                alert("There are no appointments in this range yet! Set up an alert for this location.")
+            }
+    })
+            
+} 
 
 function datePicker() {
     startDate = document.getElementById('startDate')
@@ -277,5 +315,7 @@ function datePicker() {
         startDate.max = `${desiredDateEnd}`
         // generateApptInRange(currentLocationId)
         generateApptInRange()
+        endDatePicker.value = ``
+        startDatepicker.value = `${today}` 
     }
 }
