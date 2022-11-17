@@ -94,8 +94,6 @@ function renderStates() {
 
 let nameNoAbbreviation
 
-
-
 function renderLocations(stateSorter) {
     const locationSelector = document.getElementById('location-selector')
     console.log(`State Sorter: ${stateSorter}`)
