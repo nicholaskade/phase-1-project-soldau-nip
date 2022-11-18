@@ -1,7 +1,4 @@
-// TO DO: Clean up code
-// TO DO: Remove extranious console logs
-// STRETCH TO DO: Make date not grey why the hell is that happening
-
+// 1st EVENT LISTENER: DOMContentLoaded
 document.addEventListener("DOMContentLoaded", function() {
     initializeGEAL()
     renderNavBar()
@@ -13,7 +10,8 @@ function renderNavBar() {
     let bar1 = document.querySelector(".bar1")
     let bar2 = document.querySelector(".bar2")
     let bar3 = document.querySelector(".bar3")
-
+    
+    // 2nd EVENT LISTENER: Click
     bar1.addEventListener("click", function() {
         let data1 = document.querySelector(".data1")
         data1.classList.toggle('show')
@@ -30,6 +28,8 @@ function renderNavBar() {
     })
 }
 
+// Populate the drop downs with the most up-to-date location information
+// Create the date picker functionality
 function initializeGEAL(){
     fetch('https://ttp.cbp.dhs.gov/schedulerapi/locations/?temporary=false&inviteOnly=false&operational=true&serviceName=Global%20Entry')
     .then(response => response.json())
@@ -48,7 +48,9 @@ let currentLocationId
 const alertChime = new Audio('./assets/alert-chime.mp3')
 
 function pullData(locationData){
+    // ARRAY ITERATION: forEach
     locationData.forEach((location) => {
+        // Only populate drop downs with information for states/locations with active interview sites that are in the 50 states
         if (location.shortName !== "Permanently Closed") {
             if (location.state !== "" && location.countryCode === "US") {
                 locationNames.unshift(location.state + ": " + location.name)
@@ -57,6 +59,7 @@ function pullData(locationData){
                 }
             }
         }
+    // Store the valid state's data for future use
     locationInfo.unshift(
         {name: `${location.name}`,
         locationId: `${location.id}`,
@@ -71,6 +74,7 @@ function pullData(locationData){
     renderLocations()
 }
 
+// Populate the state drop down buttons and add event listeners to each one
 function renderStates() {
     validStates.forEach((state) => {
         const stateSelector = document.getElementById('state-selector')
@@ -89,6 +93,7 @@ function renderStates() {
     })
 }
 
+// Populate the location drop down buttons and add event listeners to each one
 function renderLocations(stateSorter) {
     const locationSelector = document.getElementById('location-selector')
     while (locationSelector.firstChild) {
@@ -114,6 +119,7 @@ function renderLocations(stateSorter) {
     })
 }
 
+// Populate the location info cloud to display detailed information for the chosen location
 function renderLocationInfo(locationInput){
     let addyPlaceholder = document.getElementById('locationAddress')
     let namePlaceholder = document.getElementById('locationName')
@@ -151,14 +157,16 @@ let cloudApptInfo
 let cloudApptInfoAgain
 let cloudApptHeader
 
-// converts the month in number to the month word src="https://codingbeautydev.com/blog/javascript-convert-month-number-to-name/#:~:text=To%20convert%20a%20month%20number%20to%20a%20month%20name%2C%20create,a%20specified%20locale%20and%20options.&text=Our%20getMonthName()%20function%20takes,the%20month%20with%20that%20position."
+// Convert the month in number to the month word src="https://codingbeautydev.com/blog/javascript-convert-month-number-to-name/#:~:text=To%20convert%20a%20month%20number%20to%20a%20month%20name%2C%20create,a%20specified%20locale%20and%20options.&text=Our%20getMonthName()%20function%20takes,the%20month%20with%20that%20position."
 function getMonthName(monthNumber) {
     const date = new Date();
     date.setMonth(monthNumber - 1);
     monthWord = date.toLocaleString('en-US', { month: 'long' });
 }
 
-// TO DO: If we have extra time we can make the start time not in military time
+// Based on the location chosen, fetch for the soonest appointment available
+// If an appointment exists, display that information in the second cloud
+// If there are no available appointments, trigger a page alert to let the user know
 function generateSoonestAppt(locationId) {
     let JSONcontainer
     fetch(`https://ttp.cbp.dhs.gov/schedulerapi/slots?orderBy=soonest&limit=1&locationId=${locationId}&minimum=1`)
@@ -192,9 +200,11 @@ function generateSoonestAppt(locationId) {
 
 let milliseconds
 
+// Functionality for the alert form that the user can use to set up alerts to let them know if a sooner appt becomes available
 function createAlertListener() {
     let alertField = document.getElementById('timeQuery')
     let alertForm = document.getElementById('alertForm')
+    // 3rd EVENT LISTENER: Submit
     alertForm.addEventListener('submit', function (e) {
         e.preventDefault()
     })
@@ -206,11 +216,13 @@ function createAlertListener() {
     })
 }
 
+// If a sooner appt becomes available, play a chime and redirect the user to the scheduling website
 function alertMe() {
     alert(`An appointment has become available.`)
     window.open('https://ttp.cbp.dhs.gov/schedulerui/schedule-interview/location?lang=en&vo=true')
 }
 
+// Based on the information input by the user, fetch the appt data for the given location within the selected timeframe
 function setAnAlert() {
     let JSONcontainer = []
     fetch(`https://ttp.cbp.dhs.gov/schedulerapi/locations/${currentLocationId}/slots?startTimestamp=${desiredDateStart}T00%3A00%3A00&endTimestamp=${desiredDateEnd}T00%3A00%3A00`)
@@ -243,6 +255,7 @@ function displayToggleForm() {
     })
 }
 
+// This section parses the timestamp data fetched from the API into a more usable format
 let today = new Date();
 let todayFuture
 let dd = String(today.getDate()).padStart(2, '0');
@@ -282,6 +295,8 @@ function generateApptInRange(){
             
 } 
 
+// When a new date range is chosen, the site displays these new dates in the date picker tag, and triggers a
+// function to query the database for appointments in the new date range
 function datePicker() {
     startDate = document.getElementById('startDate')
     endDate = document.getElementById('endDate')
