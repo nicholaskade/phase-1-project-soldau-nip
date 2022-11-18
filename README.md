@@ -8,7 +8,7 @@ _Having struggled through the nightmare of trying to secure a Global Entry inter
 
 **How it works:**
 + Choose from a list of states that have active Global Entry interview locations
-+ + These database is queried every reload so you can be assured that these active locations are up to date
+++ These database is queried every reload so you can be assured that these active locations are up to date
 
 
 
