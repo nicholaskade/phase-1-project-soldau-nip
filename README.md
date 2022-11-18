@@ -7,7 +7,7 @@ _Having struggled through the nightmare of trying to secure a Global Entry inter
 **How it works:**
 Simply choose from a list of states that have active Global Entry interview locations (everyt
 
-![geal logo](http://assets/logo.png]
+![geal logo](http://assets/logo.png)
 
 
 
