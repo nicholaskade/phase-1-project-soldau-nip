@@ -4,8 +4,10 @@ _Having struggled through the nightmare of trying to secure a Global Entry inter
 
 **_geal_** utilizes an API from the Department of Homeland security to query for information about Global Entry interview locations and available appointments. 
 
-**How it works: **
+**How it works:**
 Simply choose from a list of states that have active Global Entry interview locations (everyt
+
+![geal logo](http://assets/logo.png]
 
 
 
